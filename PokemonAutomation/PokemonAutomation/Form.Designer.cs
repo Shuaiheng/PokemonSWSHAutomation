@@ -64,10 +64,13 @@
             this.ButtonHome = new System.Windows.Forms.Button();
             this.ButtonCapture = new System.Windows.Forms.Button();
             this.CheckboxLotoID = new System.Windows.Forms.CheckBox();
+            this.DayTextboxWithRaidHole = new System.Windows.Forms.TextBox();
             this.DayTextbox = new System.Windows.Forms.TextBox();
             this.LabelDate = new System.Windows.Forms.Label();
             this.CheckboxPlus3Days = new System.Windows.Forms.CheckBox();
             this.CheckboxPlus4Days = new System.Windows.Forms.CheckBox();
+            this.CheckboxPlusNDaysWithRaidHole = new System.Windows.Forms.CheckBox();
+            this.ReloadThenPlus3Days = new System.Windows.Forms.CheckBox();
             this.CheckboxPlus1Day = new System.Windows.Forms.CheckBox();
             this.YearComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,9 +78,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.MonthComboBox = new System.Windows.Forms.ComboBox();
             this.DayComboBox = new System.Windows.Forms.ComboBox();
+            this.CountLabelWithRaidHole = new System.Windows.Forms.Label();
             this.CountLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.CheckboxPlusNDays = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CheckboxPlusNDaysWithSave = new System.Windows.Forms.CheckBox();
+            this.CodeTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.CheckboxStartMax = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CheckBoxConnetToDudu = new System.Windows.Forms.CheckBox();
+            this.DuduIP = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CheckboxConnectAndInputCode = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.CheckboxDisconnect = new System.Windows.Forms.CheckBox();
+            this.CheckboxDisconnectThenConnect = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // up
@@ -443,7 +460,7 @@
             this.ButtonCapture.Name = "ButtonCapture";
             this.ButtonCapture.Size = new System.Drawing.Size(75, 23);
             this.ButtonCapture.TabIndex = 35;
-            this.ButtonCapture.Text = "Capture";
+            this.ButtonCapture.Text = "截图";
             this.ButtonCapture.UseVisualStyleBackColor = true;
             this.ButtonCapture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonCapture_MouseDown);
             this.ButtonCapture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButtonCapture_MouseUp);
@@ -451,7 +468,7 @@
             // CheckboxLotoID
             // 
             this.CheckboxLotoID.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxLotoID.Location = new System.Drawing.Point(623, 364);
+            this.CheckboxLotoID.Location = new System.Drawing.Point(623, 401);
             this.CheckboxLotoID.Name = "CheckboxLotoID";
             this.CheckboxLotoID.Size = new System.Drawing.Size(104, 34);
             this.CheckboxLotoID.TabIndex = 36;
@@ -460,31 +477,38 @@
             this.CheckboxLotoID.UseVisualStyleBackColor = true;
             this.CheckboxLotoID.CheckedChanged += new System.EventHandler(this.CheckboxLotoID_CheckedChanged);
             // 
+            // DayTextboxWithRaidHole
+            // 
+            this.DayTextboxWithRaidHole.Location = new System.Drawing.Point(569, 202);
+            this.DayTextboxWithRaidHole.Name = "DayTextboxWithRaidHole";
+            this.DayTextboxWithRaidHole.Size = new System.Drawing.Size(104, 21);
+            this.DayTextboxWithRaidHole.TabIndex = 40;
+            // 
             // DayTextbox
             // 
-            this.DayTextbox.Location = new System.Drawing.Point(577, 264);
+            this.DayTextbox.Location = new System.Drawing.Point(569, 309);
             this.DayTextbox.Name = "DayTextbox";
-            this.DayTextbox.Size = new System.Drawing.Size(104, 19);
+            this.DayTextbox.Size = new System.Drawing.Size(104, 21);
             this.DayTextbox.TabIndex = 40;
             // 
             // LabelDate
             // 
             this.LabelDate.AutoSize = true;
-            this.LabelDate.Location = new System.Drawing.Point(556, 81);
+            this.LabelDate.Location = new System.Drawing.Point(556, 77);
             this.LabelDate.Name = "LabelDate";
-            this.LabelDate.Size = new System.Drawing.Size(31, 12);
+            this.LabelDate.Size = new System.Drawing.Size(41, 12);
             this.LabelDate.TabIndex = 42;
-            this.LabelDate.Text = "Date:";
+            this.LabelDate.Text = "日期：";
             this.LabelDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CheckboxPlus3Days
             // 
             this.CheckboxPlus3Days.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus3Days.Location = new System.Drawing.Point(623, 159);
+            this.CheckboxPlus3Days.Location = new System.Drawing.Point(689, 96);
             this.CheckboxPlus3Days.Name = "CheckboxPlus3Days";
             this.CheckboxPlus3Days.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus3Days.TabIndex = 43;
-            this.CheckboxPlus3Days.Text = "+3 Days";
+            this.CheckboxPlus3Days.Text = "坑内 +3 帧";
             this.CheckboxPlus3Days.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlus3Days.UseVisualStyleBackColor = true;
             this.CheckboxPlus3Days.CheckedChanged += new System.EventHandler(this.CheckboxPlus3Days_CheckedChanged);
@@ -492,23 +516,47 @@
             // CheckboxPlus4Days
             // 
             this.CheckboxPlus4Days.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus4Days.Location = new System.Drawing.Point(623, 206);
+            this.CheckboxPlus4Days.Location = new System.Drawing.Point(558, 143);
             this.CheckboxPlus4Days.Name = "CheckboxPlus4Days";
             this.CheckboxPlus4Days.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus4Days.TabIndex = 44;
-            this.CheckboxPlus4Days.Text = "+4 Days";
+            this.CheckboxPlus4Days.Text = "坑内 +4 帧";
             this.CheckboxPlus4Days.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlus4Days.UseVisualStyleBackColor = true;
             this.CheckboxPlus4Days.CheckedChanged += new System.EventHandler(this.CheckboxPlus4Days_CheckedChanged);
             // 
+            // CheckboxPlusNDaysWithRaidHole
+            // 
+            this.CheckboxPlusNDaysWithRaidHole.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxPlusNDaysWithRaidHole.Location = new System.Drawing.Point(679, 197);
+            this.CheckboxPlusNDaysWithRaidHole.Name = "CheckboxPlusNDaysWithRaidHole";
+            this.CheckboxPlusNDaysWithRaidHole.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxPlusNDaysWithRaidHole.TabIndex = 56;
+            this.CheckboxPlusNDaysWithRaidHole.Text = "坑内过帧+N";
+            this.CheckboxPlusNDaysWithRaidHole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxPlusNDaysWithRaidHole.UseVisualStyleBackColor = true;
+            this.CheckboxPlusNDaysWithRaidHole.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDaysWithRaidHole_CheckedChanged);
+            // 
+            // ReloadThenPlus3Days
+            // 
+            this.ReloadThenPlus3Days.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ReloadThenPlus3Days.Location = new System.Drawing.Point(689, 143);
+            this.ReloadThenPlus3Days.Name = "ReloadThenPlus3Days";
+            this.ReloadThenPlus3Days.Size = new System.Drawing.Size(104, 32);
+            this.ReloadThenPlus3Days.TabIndex = 56;
+            this.ReloadThenPlus3Days.Text = "重启游戏后+3帧";
+            this.ReloadThenPlus3Days.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ReloadThenPlus3Days.UseVisualStyleBackColor = true;
+            this.ReloadThenPlus3Days.CheckedChanged += new System.EventHandler(this.ReloadThenPlus3Days_CheckedChanged);
+            // 
             // CheckboxPlus1Day
             // 
             this.CheckboxPlus1Day.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus1Day.Location = new System.Drawing.Point(623, 110);
+            this.CheckboxPlus1Day.Location = new System.Drawing.Point(558, 96);
             this.CheckboxPlus1Day.Name = "CheckboxPlus1Day";
             this.CheckboxPlus1Day.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus1Day.TabIndex = 45;
-            this.CheckboxPlus1Day.Text = "+1 Day";
+            this.CheckboxPlus1Day.Text = "坑内 +1 帧";
             this.CheckboxPlus1Day.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlus1Day.UseVisualStyleBackColor = true;
             this.CheckboxPlus1Day.CheckedChanged += new System.EventHandler(this.CheckboxPlus1Day_CheckedChanged);
@@ -578,7 +626,7 @@
             "2058",
             "2059",
             "2060"});
-            this.YearComboBox.Location = new System.Drawing.Point(558, 47);
+            this.YearComboBox.Location = new System.Drawing.Point(558, 29);
             this.YearComboBox.Name = "YearComboBox";
             this.YearComboBox.Size = new System.Drawing.Size(91, 20);
             this.YearComboBox.TabIndex = 46;
@@ -587,29 +635,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(556, 32);
+            this.label1.Location = new System.Drawing.Point(556, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 12);
+            this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 47;
-            this.label1.Text = "Year";
+            this.label1.Text = "年";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(659, 32);
+            this.label2.Location = new System.Drawing.Point(659, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 12);
+            this.label2.Size = new System.Drawing.Size(17, 12);
             this.label2.TabIndex = 48;
-            this.label2.Text = "Month";
+            this.label2.Text = "月";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(735, 32);
+            this.label3.Location = new System.Drawing.Point(735, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 12);
+            this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 49;
-            this.label3.Text = "Day";
+            this.label3.Text = "日";
             // 
             // MonthComboBox
             // 
@@ -627,7 +675,7 @@
             "10",
             "11",
             "12"});
-            this.MonthComboBox.Location = new System.Drawing.Point(661, 47);
+            this.MonthComboBox.Location = new System.Drawing.Point(661, 29);
             this.MonthComboBox.Name = "MonthComboBox";
             this.MonthComboBox.Size = new System.Drawing.Size(66, 20);
             this.MonthComboBox.TabIndex = 50;
@@ -668,50 +716,210 @@
             "29",
             "30",
             "31"});
-            this.DayComboBox.Location = new System.Drawing.Point(737, 47);
+            this.DayComboBox.Location = new System.Drawing.Point(737, 29);
             this.DayComboBox.Name = "DayComboBox";
             this.DayComboBox.Size = new System.Drawing.Size(66, 20);
             this.DayComboBox.TabIndex = 51;
             this.DayComboBox.SelectedIndexChanged += new System.EventHandler(this.DayComboBox_SelectedIndexChanged);
             this.DayComboBox.Click += new System.EventHandler(this.DayComboBox_Click);
             // 
+            // CountLabelWithRaidHole
+            // 
+            this.CountLabelWithRaidHole.AutoSize = true;
+            this.CountLabelWithRaidHole.Location = new System.Drawing.Point(567, 234);
+            this.CountLabelWithRaidHole.Name = "CountLabelWithRaidHole";
+            this.CountLabelWithRaidHole.Size = new System.Drawing.Size(65, 12);
+            this.CountLabelWithRaidHole.TabIndex = 52;
+            this.CountLabelWithRaidHole.Text = "已过帧数：";
+            // 
             // CountLabel
             // 
             this.CountLabel.AutoSize = true;
-            this.CountLabel.Location = new System.Drawing.Point(575, 296);
+            this.CountLabel.Location = new System.Drawing.Point(567, 340);
             this.CountLabel.Name = "CountLabel";
-            this.CountLabel.Size = new System.Drawing.Size(35, 12);
+            this.CountLabel.Size = new System.Drawing.Size(65, 12);
             this.CountLabel.TabIndex = 52;
-            this.CountLabel.Text = "count:";
+            this.CountLabel.Text = "已过帧数：";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 12);
+            this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 53;
-            this.label4.Text = "Port";
+            this.label4.Text = "端口";
             // 
             // CheckboxPlusNDays
             // 
             this.CheckboxPlusNDays.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlusNDays.Location = new System.Drawing.Point(687, 257);
+            this.CheckboxPlusNDays.Location = new System.Drawing.Point(679, 277);
             this.CheckboxPlusNDays.Name = "CheckboxPlusNDays";
             this.CheckboxPlusNDays.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDays.TabIndex = 54;
-            this.CheckboxPlusNDays.Text = "+ N Days";
+            this.CheckboxPlusNDays.Text = "排位过帧+N";
             this.CheckboxPlusNDays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlusNDays.UseVisualStyleBackColor = true;
             this.CheckboxPlusNDays.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDays_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(720, 312);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 12);
+            this.label5.TabIndex = 57;
+            this.label5.Text = "或";
+            // 
+            // CheckboxPlusNDaysWithSave
+            // 
+            this.CheckboxPlusNDaysWithSave.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxPlusNDaysWithSave.Location = new System.Drawing.Point(679, 330);
+            this.CheckboxPlusNDaysWithSave.Name = "CheckboxPlusNDaysWithSave";
+            this.CheckboxPlusNDaysWithSave.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxPlusNDaysWithSave.TabIndex = 58;
+            this.CheckboxPlusNDaysWithSave.Text = "排位过帧+N(每150帧存档)";
+            this.CheckboxPlusNDaysWithSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxPlusNDaysWithSave.UseVisualStyleBackColor = true;
+            this.CheckboxPlusNDaysWithSave.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDaysWithSave_CheckedChanged);
+            // 
+            // CodeTextBox
+            // 
+            this.CodeTextBox.Location = new System.Drawing.Point(853, 52);
+            this.CodeTextBox.Name = "CodeTextBox";
+            this.CodeTextBox.Size = new System.Drawing.Size(86, 21);
+            this.CodeTextBox.TabIndex = 60;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(855, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 12);
+            this.label7.TabIndex = 61;
+            this.label7.Text = "四位密码-必填";
+            // 
+            // CheckboxStartMax
+            // 
+            this.CheckboxStartMax.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxStartMax.Location = new System.Drawing.Point(844, 111);
+            this.CheckboxStartMax.Name = "CheckboxStartMax";
+            this.CheckboxStartMax.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxStartMax.TabIndex = 62;
+            this.CheckboxStartMax.Text = "自动开车";
+            this.CheckboxStartMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxStartMax.UseVisualStyleBackColor = true;
+            this.CheckboxStartMax.CheckedChanged += new System.EventHandler(this.CheckboxStartMax_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(855, 79);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 12);
+            this.label6.TabIndex = 63;
+            this.label6.Text = "若密码只包含0";
+            // 
+            // CheckBoxConnetToDudu
+            // 
+            this.CheckBoxConnetToDudu.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckBoxConnetToDudu.Location = new System.Drawing.Point(844, 330);
+            this.CheckBoxConnetToDudu.Name = "CheckBoxConnetToDudu";
+            this.CheckBoxConnetToDudu.Size = new System.Drawing.Size(104, 32);
+            this.CheckBoxConnetToDudu.TabIndex = 64;
+            this.CheckBoxConnetToDudu.Text = "自动连dudu";
+            this.CheckBoxConnetToDudu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckBoxConnetToDudu.UseVisualStyleBackColor = true;
+            this.CheckBoxConnetToDudu.CheckedChanged += new System.EventHandler(this.CheckBoxConnetToDudu_CheckedChanged);
+            // 
+            // DuduIP
+            // 
+            this.DuduIP.AutoSize = true;
+            this.DuduIP.Location = new System.Drawing.Point(864, 365);
+            this.DuduIP.Name = "DuduIP";
+            this.DuduIP.Size = new System.Drawing.Size(65, 12);
+            this.DuduIP.TabIndex = 65;
+            this.DuduIP.TabStop = true;
+            this.DuduIP.Text = "Dudu的网址";
+            this.DuduIP.Click += new System.EventHandler(this.DuduIP_LinkClick);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(859, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 12);
+            this.label8.TabIndex = 66;
+            this.label8.Text = "则视为无密码";
+            // 
+            // CheckboxConnectAndInputCode
+            // 
+            this.CheckboxConnectAndInputCode.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxConnectAndInputCode.Location = new System.Drawing.Point(844, 191);
+            this.CheckboxConnectAndInputCode.Name = "CheckboxConnectAndInputCode";
+            this.CheckboxConnectAndInputCode.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxConnectAndInputCode.TabIndex = 67;
+            this.CheckboxConnectAndInputCode.Text = "联网+输密码";
+            this.CheckboxConnectAndInputCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxConnectAndInputCode.UseVisualStyleBackColor = true;
+            this.CheckboxConnectAndInputCode.CheckedChanged += new System.EventHandler(this.CheckboxConnectAndInputCode_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("宋体", 12F);
+            this.label9.Location = new System.Drawing.Point(854, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 16);
+            this.label9.TabIndex = 68;
+            this.label9.Text = "半自动开车";
+            // 
+            // CheckboxDisconnect
+            // 
+            this.CheckboxDisconnect.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxDisconnect.Location = new System.Drawing.Point(844, 229);
+            this.CheckboxDisconnect.Name = "CheckboxDisconnect";
+            this.CheckboxDisconnect.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxDisconnect.TabIndex = 69;
+            this.CheckboxDisconnect.Text = "断网";
+            this.CheckboxDisconnect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxDisconnect.UseVisualStyleBackColor = true;
+            this.CheckboxDisconnect.CheckedChanged += new System.EventHandler(this.CheckboxDisconnect_CheckedChanged);
+            // 
+            // CheckboxDisconnectThenConnect
+            // 
+            this.CheckboxDisconnectThenConnect.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxDisconnectThenConnect.Font = new System.Drawing.Font("宋体", 8F);
+            this.CheckboxDisconnectThenConnect.Location = new System.Drawing.Point(844, 267);
+            this.CheckboxDisconnectThenConnect.Name = "CheckboxDisconnectThenConnect";
+            this.CheckboxDisconnectThenConnect.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxDisconnectThenConnect.TabIndex = 70;
+            this.CheckboxDisconnectThenConnect.Text = "断网+联网+输密码";
+            this.CheckboxDisconnectThenConnect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxDisconnectThenConnect.UseVisualStyleBackColor = true;
+            this.CheckboxDisconnectThenConnect.CheckedChanged += new System.EventHandler(this.CheckboxDisconnectThenConnect_CheckedChanged);
             // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 470);
+            this.ClientSize = new System.Drawing.Size(972, 461);
+            this.Controls.Add(this.CheckboxDisconnectThenConnect);
+            this.Controls.Add(this.CheckboxDisconnect);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.CheckboxConnectAndInputCode);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.DuduIP);
+            this.Controls.Add(this.CheckBoxConnetToDudu);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.CheckboxStartMax);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.CodeTextBox);
+            this.Controls.Add(this.CheckboxPlusNDaysWithSave);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.CheckboxPlusNDays);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.CountLabelWithRaidHole);
             this.Controls.Add(this.CountLabel);
             this.Controls.Add(this.DayComboBox);
             this.Controls.Add(this.MonthComboBox);
@@ -721,8 +929,11 @@
             this.Controls.Add(this.YearComboBox);
             this.Controls.Add(this.CheckboxPlus1Day);
             this.Controls.Add(this.CheckboxPlus4Days);
+            this.Controls.Add(this.CheckboxPlusNDaysWithRaidHole);
             this.Controls.Add(this.CheckboxPlus3Days);
+            this.Controls.Add(this.ReloadThenPlus3Days);
             this.Controls.Add(this.LabelDate);
+            this.Controls.Add(this.DayTextboxWithRaidHole);
             this.Controls.Add(this.DayTextbox);
             this.Controls.Add(this.CheckboxLotoID);
             this.Controls.Add(this.ButtonCapture);
@@ -759,7 +970,7 @@
             this.Controls.Add(this.down);
             this.Controls.Add(this.up);
             this.Name = "PokemonAutomation";
-            this.Text = "PokemonAutomation";
+            this.Text = "PokemonAutomation(By chibi314, modified by DTFancCy1)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -803,20 +1014,37 @@
         private System.Windows.Forms.Button ButtonHome;
         private System.Windows.Forms.Button ButtonCapture;
         private System.Windows.Forms.CheckBox CheckboxLotoID;
+        private System.Windows.Forms.TextBox DayTextboxWithRaidHole;
         private System.Windows.Forms.TextBox DayTextbox;
         private System.Windows.Forms.Label LabelDate;
         private System.Windows.Forms.CheckBox CheckboxPlus3Days;
         private System.Windows.Forms.CheckBox CheckboxPlus4Days;
+        private System.Windows.Forms.CheckBox CheckboxPlusNDaysWithRaidHole;
         private System.Windows.Forms.CheckBox CheckboxPlus1Day;
+        private System.Windows.Forms.CheckBox ReloadThenPlus3Days;
         private System.Windows.Forms.ComboBox YearComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox MonthComboBox;
         private System.Windows.Forms.ComboBox DayComboBox;
+        private System.Windows.Forms.Label CountLabelWithRaidHole;
         private System.Windows.Forms.Label CountLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox CheckboxPlusNDays;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox CheckboxPlusNDaysWithSave;
+        private System.Windows.Forms.TextBox CodeTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox CheckboxStartMax;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox CheckBoxConnetToDudu;
+        private System.Windows.Forms.LinkLabel DuduIP;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox CheckboxConnectAndInputCode;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox CheckboxDisconnect;
+        private System.Windows.Forms.CheckBox CheckboxDisconnectThenConnect;
     }
 }
 

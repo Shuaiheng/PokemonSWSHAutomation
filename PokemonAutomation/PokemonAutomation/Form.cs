@@ -45,6 +45,8 @@ namespace PokemonAutomation
             MAX = 255
         }
 
+        private int[,] numberPanel = new int[10, 2] { { 3, 1 }, { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 1, 1 }, { 1, 2 }, { 2, 0 }, { 2, 1 }, { 2, 2 } };
+
         private CancellationTokenSource token_source;
         private CancellationToken cancel_token;
         private uint day_count;
@@ -79,7 +81,19 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateDateLabel(this.updateDateLabel));
                 return;
             }
-            LabelDate.Text = "Date: " + current_date.ToString("yyyy/MM/dd");
+            LabelDate.Text = "日期： " + current_date.ToString("yyyy/MM/dd");
+        }
+
+        private delegate void delegateUpdateCountLabelWithRaidHole(int count, int max);
+
+        private void updateCountLabelWithRaidHole(int count, int max)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new delegateUpdateCountLabelWithRaidHole(this.updateCountLabelWithRaidHole), count, max);
+                return;
+            }
+            CountLabelWithRaidHole.Text = "已过帧数：" + count.ToString() + "/" + max.ToString();
         }
 
         private delegate void delegateUpdateCountLabel(int count, int max);
@@ -91,7 +105,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateCountLabel(this.updateCountLabel), count, max);
                 return;
             }
-            CountLabel.Text = "count: " + count.ToString() + "/" + max.ToString();
+            CountLabel.Text = "已过帧数： " + count.ToString() + "/" + max.ToString();
         }
 
 
@@ -128,11 +142,11 @@ namespace PokemonAutomation
         {
             try
             {
-                
+
                 //int data_len = serialPort.BytesToRead;
                 //Byte[] data = new Byte[data_len];
                 //serialPort.Read(data, 0, data_len);
-                
+
                 String data = serialPort.ReadExisting();
 
                 Invoke((MethodInvoker)(() =>	// 受信用スレッドから切り替えてデータを書き込む
@@ -617,7 +631,7 @@ namespace PokemonAutomation
             releaseButton(ButtonType.A);
             await Task.Delay(3000);
 
-            
+
             pressButton(ButtonType.HOME);
             await Task.Delay(50);
             releaseButton(ButtonType.HOME);
@@ -702,7 +716,7 @@ namespace PokemonAutomation
                 await Task.Delay(100);
             }
         }
-    
+
         private async void CheckboxPlus1Day_CheckedChanged(object sender, EventArgs e)
         {
             DayComboBox.Enabled = false;
@@ -715,9 +729,9 @@ namespace PokemonAutomation
 
                     await Task.Run(async () =>
                     {
-                        
+
                         if (cancel_token.IsCancellationRequested)
-                        { 
+                        {
                             return;
                         }
                         await increaseDateWithRaidHole();
@@ -754,7 +768,7 @@ namespace PokemonAutomation
                             {
                                 return;
                             }
-                            
+
                             await increaseDateWithRaidHole();
                         }
                     }, cancel_token);
@@ -808,6 +822,118 @@ namespace PokemonAutomation
             DayComboBox.Enabled = true;
         }
 
+        private async void CheckboxPlusNDaysWithRaidHole_CheckedChanged(object sender, EventArgs e)
+        {
+            DayComboBox.Enabled = false;
+            if (CheckboxPlusNDaysWithRaidHole.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int n_days = int.Parse(DayTextboxWithRaidHole.Text);
+                    updateCountLabelWithRaidHole(0, n_days);
+
+                    await Task.Run(async () =>
+                    {
+                        for (uint i = 0; i < n_days; ++i)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+
+                            await increaseDateWithRaidHole();
+                            updateCountLabelWithRaidHole((int)i + 1, n_days);
+                        }
+                    }, cancel_token);
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                CheckboxPlusNDaysWithRaidHole.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            DayComboBox.Enabled = true;
+        }
+
+        private async void ReloadThenPlus3Days_CheckedChanged(object sender, EventArgs e)
+        {
+            DayComboBox.Enabled = false;
+            if (ReloadThenPlus3Days.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await Task.Delay(300);
+                    pressButton(ButtonType.HOME);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.HOME);
+                    await Task.Delay(300);
+                    // shut down the software
+                    pressButton(ButtonType.X);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.X);
+                    await Task.Delay(300);
+                    // confirm
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(5000);
+                    // start the game
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(1000);
+                    // confirm account
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(18000);
+                    // skip the opening animation
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(13000);
+                    // get into the raid
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(1000);
+
+                    await Task.Run(async () =>
+                    {
+                        for (uint i = 0; i < 3; ++i)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+
+                            await increaseDateWithRaidHole();
+                        }
+                    }, cancel_token);
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                ReloadThenPlus3Days.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            DayComboBox.Enabled = true;
+        }
+
         private async void CheckboxPlusNDays_CheckedChanged(object sender, EventArgs e)
         {
             DayComboBox.Enabled = false;
@@ -821,6 +947,7 @@ namespace PokemonAutomation
                     int n_days = int.Parse(DayTextbox.Text);
                     updateCountLabel(0, n_days);
 
+                    await Task.Delay(300);
                     pressButton(ButtonType.A);
                     await Task.Delay(40);
                     releaseButton(ButtonType.A);
@@ -837,7 +964,7 @@ namespace PokemonAutomation
                     await Task.Run(async () =>
                     {
                         for (int i = 0; i < n_days; ++i)
-                        { 
+                        {
                             if (cancel_token.IsCancellationRequested)
                             {
                                 return;
@@ -852,10 +979,157 @@ namespace PokemonAutomation
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
                 }
-                catch(System.FormatException formatException)
+                catch (System.FormatException formatException)
                 {
                 }
                 CheckboxPlusNDays.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            DayComboBox.Enabled = true;
+        }
+
+        private async Task SaveThenBackToPlusNDays()
+        {
+            await Task.Delay(300);
+            pressButton(ButtonType.HOME);
+            await Task.Delay(40);
+            releaseButton(ButtonType.HOME);
+            await Task.Delay(1000);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(1000);
+            pressButton(ButtonType.X);
+            await Task.Delay(40);
+            releaseButton(ButtonType.X);
+            await Task.Delay(1000);
+            pressButton(ButtonType.R);
+            await Task.Delay(40);
+            releaseButton(ButtonType.R);
+            await Task.Delay(1500);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(3000);
+            pressButton(ButtonType.HOME);
+            await Task.Delay(50);
+            releaseButton(ButtonType.HOME);
+            await Task.Delay(1000);
+            pressButton(ButtonType.DOWN);
+            await Task.Delay(50);
+            for (int j = 0; j < 4; ++j)
+            {
+                pressButton(ButtonType.RIGHT);
+                await Task.Delay(50);
+                releaseButton(ButtonType.RIGHT);
+                await Task.Delay(50);
+            }
+            pressButton(ButtonType.A);
+            await Task.Delay(50);
+            releaseButton(ButtonType.A);
+            await Task.Delay(50);
+            pressButton(ButtonType.DOWN);
+            await Task.Delay(2200);
+            releaseButton(ButtonType.DOWN);
+            await Task.Delay(50);
+            pressButton(ButtonType.A);
+            await Task.Delay(50);
+            releaseButton(ButtonType.A);
+            await Task.Delay(50);
+
+            for (int j = 0; j < 4; ++j)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(50);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(50);
+            }
+
+            pressButton(ButtonType.A);
+            await Task.Delay(50);
+            releaseButton(ButtonType.A);
+            await Task.Delay(300);
+
+            for (int j = 0; j < 2; ++j)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(50);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(50);
+            }
+
+            await Task.Delay(300);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(300);
+            pressButton(ButtonType.RIGHT);
+            await Task.Delay(1000);
+            releaseButton(ButtonType.RIGHT);
+            await Task.Delay(40);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(300);
+        }
+
+        private async void CheckboxPlusNDaysWithSave_CheckedChanged(object sender, EventArgs e)
+        {
+            DayComboBox.Enabled = false;
+            if (CheckboxPlusNDaysWithSave.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int n_days = int.Parse(DayTextbox.Text);
+                    updateCountLabel(0, n_days);
+
+                    await Task.Delay(300);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(300);
+                    pressButton(ButtonType.RIGHT);
+                    await Task.Delay(1000);
+                    releaseButton(ButtonType.RIGHT);
+                    await Task.Delay(40);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(300);
+
+                    await Task.Run(async () =>
+                    {
+                        for (int i = 0; i < n_days; ++i)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            if (i !=0 && i % 150 == 0)
+                            {
+                                await SaveThenBackToPlusNDays();
+                                await Task.Delay(2000);
+                            }
+
+                            await increaseDate();
+                            updateCountLabel(i + 1, n_days);
+                        }
+                    }, cancel_token);
+
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxPlusNDaysWithSave.Checked = false;
             }
             else
             {
@@ -1043,6 +1317,472 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
             DayComboBox.Enabled = true;
+        }
+
+        private async Task NumberPanelGoUp(int step)
+        {
+            await Task.Delay(300);
+            for (uint i = 0; i < step; ++i)
+            {
+                pressButton(ButtonType.UP);
+                await Task.Delay(40);
+                releaseButton(ButtonType.UP);
+                await Task.Delay(100);
+            }   
+        }
+
+        private async Task NumberPanelGoDown(int step)
+        {
+            await Task.Delay(300);
+            for (uint i = 0; i < step; ++i)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(40);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(100);
+            }
+        }
+
+        private async Task NumberPanelGoLeft(int step)
+        {
+            await Task.Delay(300);
+            for (uint i = 0; i < step; ++i)
+            {
+                pressButton(ButtonType.LEFT);
+                await Task.Delay(40);
+                releaseButton(ButtonType.LEFT);
+                await Task.Delay(100);
+            }
+        }
+
+        private async Task NumberPanelGoRight(int step)
+        {
+            await Task.Delay(300);
+            for (uint i = 0; i < step; ++i)
+            {
+                pressButton(ButtonType.RIGHT);
+                await Task.Delay(40);
+                releaseButton(ButtonType.RIGHT);
+                await Task.Delay(100);
+            }
+        }
+
+        private async Task ChangeNumberPanel(int[] current, int[] target)
+        {
+            await Task.Delay(300);
+            // if current number is 0
+            if (current[0] == 3)
+            {
+                await NumberPanelGoUp(current[0] - target[0]);
+                if (target[1] == 0)
+                {
+                    await NumberPanelGoLeft(1);
+                }
+                else if (target[1] == 2)
+                {
+                    await NumberPanelGoRight(1);
+                }
+            }
+            else
+            {
+                // move horizontally first
+                if (current[1] > target[1])
+                {
+                    await NumberPanelGoLeft(current[1] - target[1]);
+                }
+                else if (current[1] < target[1])
+                {
+                    await NumberPanelGoRight(target[1] - current[1]);
+                }
+                // then move vertically
+                if (current[0] > target[0])
+                {
+                    await NumberPanelGoUp(current[0] - target[0]);
+                }
+                else if (current[0] < target[0])
+                {
+                    await NumberPanelGoDown(target[0] - current[0]);
+                }
+            }
+        }
+
+        private async Task InputCode(int code)
+        {
+            await Task.Delay(300);
+            int number4 = code % 10;
+            int number3 = code / 10 % 10;
+            int number2 = code / 100 % 10;
+            int number1 = code / 1000 % 10;
+            int number0 = 1;
+            int[] number4Position = { numberPanel[number4, 0], numberPanel[number4, 1] };
+            int[] number3Position = { numberPanel[number3, 0], numberPanel[number3, 1] };
+            int[] number2Position = { numberPanel[number2, 0], numberPanel[number2, 1] };
+            int[] number1Position = { numberPanel[number1, 0], numberPanel[number1, 1] };
+            int[] init = { 0, 0 };
+            if (number0 != number1)
+            {
+                await ChangeNumberPanel(init, number1Position);
+            }
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(100);
+
+            if (number1 != number2)
+            {
+                await ChangeNumberPanel(number1Position, number2Position);
+            }
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(100);
+
+            if (number2 != number3)
+            {
+                await ChangeNumberPanel(number2Position, number3Position);
+            }
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(100);
+
+            if (number3 != number4)
+            {
+                await ChangeNumberPanel(number3Position, number4Position);
+            }
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(100);
+            pressButton(ButtonType.PLUS);
+            await Task.Delay(40);
+            releaseButton(ButtonType.PLUS);
+            await Task.Delay(1500);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(500);
+        }
+
+        private async Task ConnectToTheInternet()
+        {
+            await Task.Delay(300);
+            pressButton(ButtonType.Y);
+            await Task.Delay(40);
+            releaseButton(ButtonType.Y);
+            await Task.Delay(1000);
+            pressButton(ButtonType.PLUS);
+            await Task.Delay(40);
+            releaseButton(ButtonType.PLUS);
+            await Task.Delay(20000);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(300);
+        }
+
+        private async Task DisconnectFromTheInternet()
+        {
+            await Task.Delay(300);
+            pressButton(ButtonType.HOME);
+            await Task.Delay(2000);
+            releaseButton(ButtonType.HOME);
+            await Task.Delay(500);
+            for (uint i = 0; i < 4; ++i)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(40);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(100);
+            }
+            for (uint i = 0; i < 2; ++i)
+            {
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(500);
+            }
+            pressButton(ButtonType.B);
+            await Task.Delay(40);
+            releaseButton(ButtonType.B);
+            await Task.Delay(500);
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(300);
+        }
+
+        private async void CheckboxStartMax_CheckedChanged(object sender, EventArgs e)
+        {
+            CodeTextBox.Enabled = false;
+            if (CheckboxStartMax.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int code = int.Parse(CodeTextBox.Text);
+                    
+                    for (uint j = 0; j < 100; j++)
+                    {
+                        await ConnectToTheInternet();
+                        pressButton(ButtonType.Y);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.Y);
+                        await Task.Delay(1500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(10000);
+                        if (code != 0)
+                        {
+                            pressButton(ButtonType.PLUS);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.PLUS);
+                            await Task.Delay(1000);
+                            await InputCode(code);
+                        }
+
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(130000);
+
+                        // start
+                        pressButton(ButtonType.UP);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.UP);
+                        await Task.Delay(300);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+
+                        // in case there are less than 4 players
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(15000);
+
+                        await DisconnectFromTheInternet();
+                        
+                        await Task.Delay(20000);
+                    }
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxStartMax.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            CodeTextBox.Enabled = true;
+        }
+
+        private async void CheckBoxConnetToDudu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBoxConnetToDudu.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    pressButton(ButtonType.Y);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.Y);
+                    await Task.Delay(1000);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(1000);
+                    pressButton(ButtonType.DOWN);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.DOWN);
+                    await Task.Delay(300);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(500);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(500);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(1000);
+
+                    await InputCode(9162);
+
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(500);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(500);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckBoxConnetToDudu.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+        }
+
+        private async void CheckboxConnectAndInputCode_CheckedChanged(object sender, EventArgs e)
+        {
+            CodeTextBox.Enabled = false;
+            if (CheckboxConnectAndInputCode.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int code = int.Parse(CodeTextBox.Text);
+
+                    await ConnectToTheInternet();
+                    pressButton(ButtonType.Y);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.Y);
+                    await Task.Delay(1500);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(10000);
+                    if (code != 0)
+                    {
+                        pressButton(ButtonType.PLUS);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.PLUS);
+                        await Task.Delay(1000);
+                        await InputCode(code);
+                    }
+
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(300);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxConnectAndInputCode.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            CodeTextBox.Enabled = true;
+        }
+
+        private async void CheckboxDisconnect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckboxDisconnect.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await DisconnectFromTheInternet();
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxDisconnect.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+        }
+
+        private async void CheckboxDisconnectThenConnect_CheckedChanged(object sender, EventArgs e)
+        {
+            CodeTextBox.Enabled = false;
+            if (CheckboxDisconnectThenConnect.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int code = int.Parse(CodeTextBox.Text);
+
+                    await DisconnectFromTheInternet();
+                    await Task.Delay(20000);
+
+                    await ConnectToTheInternet();
+                    pressButton(ButtonType.Y);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.Y);
+                    await Task.Delay(1500);
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(10000);
+                    if (code != 0)
+                    {
+                        pressButton(ButtonType.PLUS);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.PLUS);
+                        await Task.Delay(1000);
+                        await InputCode(code);
+                    }
+
+                    pressButton(ButtonType.A);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.A);
+                    await Task.Delay(300);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxDisconnectThenConnect.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            CodeTextBox.Enabled = true;
+        }
+
+        private async void DuduIP_LinkClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("iexplore.exe", "http://116.202.105.91/");
         }
     }
 }
