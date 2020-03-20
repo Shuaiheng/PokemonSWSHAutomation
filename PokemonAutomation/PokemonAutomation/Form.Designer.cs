@@ -95,6 +95,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.CheckboxDisconnect = new System.Windows.Forms.CheckBox();
             this.CheckboxDisconnectThenConnect = new System.Windows.Forms.CheckBox();
+            this.CheckboxStartMaxReload = new System.Windows.Forms.CheckBox();
+            this.CheckboxPlus3DaysStartMaxReload = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // up
@@ -757,7 +759,7 @@
             this.CheckboxPlusNDays.Name = "CheckboxPlusNDays";
             this.CheckboxPlusNDays.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDays.TabIndex = 54;
-            this.CheckboxPlusNDays.Text = "排位过帧+N";
+            this.CheckboxPlusNDays.Text = "对战过帧+N";
             this.CheckboxPlusNDays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlusNDays.UseVisualStyleBackColor = true;
             this.CheckboxPlusNDays.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDays_CheckedChanged);
@@ -778,14 +780,14 @@
             this.CheckboxPlusNDaysWithSave.Name = "CheckboxPlusNDaysWithSave";
             this.CheckboxPlusNDaysWithSave.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDaysWithSave.TabIndex = 58;
-            this.CheckboxPlusNDaysWithSave.Text = "排位过帧+N(每150帧存档)";
+            this.CheckboxPlusNDaysWithSave.Text = "对战过帧+N(每200帧存档)";
             this.CheckboxPlusNDaysWithSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlusNDaysWithSave.UseVisualStyleBackColor = true;
             this.CheckboxPlusNDaysWithSave.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDaysWithSave_CheckedChanged);
             // 
             // CodeTextBox
             // 
-            this.CodeTextBox.Location = new System.Drawing.Point(853, 52);
+            this.CodeTextBox.Location = new System.Drawing.Point(896, 52);
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(86, 21);
             this.CodeTextBox.TabIndex = 60;
@@ -793,7 +795,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(855, 32);
+            this.label7.Location = new System.Drawing.Point(898, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 12);
             this.label7.TabIndex = 61;
@@ -802,11 +804,11 @@
             // CheckboxStartMax
             // 
             this.CheckboxStartMax.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxStartMax.Location = new System.Drawing.Point(844, 111);
+            this.CheckboxStartMax.Location = new System.Drawing.Point(889, 168);
             this.CheckboxStartMax.Name = "CheckboxStartMax";
             this.CheckboxStartMax.Size = new System.Drawing.Size(104, 32);
             this.CheckboxStartMax.TabIndex = 62;
-            this.CheckboxStartMax.Text = "自动开车";
+            this.CheckboxStartMax.Text = "自动开车-不重启";
             this.CheckboxStartMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxStartMax.UseVisualStyleBackColor = true;
             this.CheckboxStartMax.CheckedChanged += new System.EventHandler(this.CheckboxStartMax_CheckedChanged);
@@ -814,7 +816,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(855, 79);
+            this.label6.Location = new System.Drawing.Point(898, 79);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(83, 12);
             this.label6.TabIndex = 63;
@@ -823,7 +825,7 @@
             // CheckBoxConnetToDudu
             // 
             this.CheckBoxConnetToDudu.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckBoxConnetToDudu.Location = new System.Drawing.Point(844, 330);
+            this.CheckBoxConnetToDudu.Location = new System.Drawing.Point(889, 383);
             this.CheckBoxConnetToDudu.Name = "CheckBoxConnetToDudu";
             this.CheckBoxConnetToDudu.Size = new System.Drawing.Size(104, 32);
             this.CheckBoxConnetToDudu.TabIndex = 64;
@@ -835,7 +837,7 @@
             // DuduIP
             // 
             this.DuduIP.AutoSize = true;
-            this.DuduIP.Location = new System.Drawing.Point(864, 365);
+            this.DuduIP.Location = new System.Drawing.Point(909, 418);
             this.DuduIP.Name = "DuduIP";
             this.DuduIP.Size = new System.Drawing.Size(65, 12);
             this.DuduIP.TabIndex = 65;
@@ -846,7 +848,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(859, 96);
+            this.label8.Location = new System.Drawing.Point(902, 96);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 12);
             this.label8.TabIndex = 66;
@@ -855,7 +857,7 @@
             // CheckboxConnectAndInputCode
             // 
             this.CheckboxConnectAndInputCode.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxConnectAndInputCode.Location = new System.Drawing.Point(844, 191);
+            this.CheckboxConnectAndInputCode.Location = new System.Drawing.Point(825, 258);
             this.CheckboxConnectAndInputCode.Name = "CheckboxConnectAndInputCode";
             this.CheckboxConnectAndInputCode.Size = new System.Drawing.Size(104, 32);
             this.CheckboxConnectAndInputCode.TabIndex = 67;
@@ -868,7 +870,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 12F);
-            this.label9.Location = new System.Drawing.Point(854, 159);
+            this.label9.Location = new System.Drawing.Point(899, 222);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 16);
             this.label9.TabIndex = 68;
@@ -877,7 +879,7 @@
             // CheckboxDisconnect
             // 
             this.CheckboxDisconnect.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxDisconnect.Location = new System.Drawing.Point(844, 229);
+            this.CheckboxDisconnect.Location = new System.Drawing.Point(889, 302);
             this.CheckboxDisconnect.Name = "CheckboxDisconnect";
             this.CheckboxDisconnect.Size = new System.Drawing.Size(104, 32);
             this.CheckboxDisconnect.TabIndex = 69;
@@ -890,7 +892,7 @@
             // 
             this.CheckboxDisconnectThenConnect.Appearance = System.Windows.Forms.Appearance.Button;
             this.CheckboxDisconnectThenConnect.Font = new System.Drawing.Font("宋体", 8F);
-            this.CheckboxDisconnectThenConnect.Location = new System.Drawing.Point(844, 267);
+            this.CheckboxDisconnectThenConnect.Location = new System.Drawing.Point(953, 258);
             this.CheckboxDisconnectThenConnect.Name = "CheckboxDisconnectThenConnect";
             this.CheckboxDisconnectThenConnect.Size = new System.Drawing.Size(104, 32);
             this.CheckboxDisconnectThenConnect.TabIndex = 70;
@@ -899,11 +901,37 @@
             this.CheckboxDisconnectThenConnect.UseVisualStyleBackColor = true;
             this.CheckboxDisconnectThenConnect.CheckedChanged += new System.EventHandler(this.CheckboxDisconnectThenConnect_CheckedChanged);
             // 
+            // CheckboxStartMaxReload
+            // 
+            this.CheckboxStartMaxReload.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxStartMaxReload.Location = new System.Drawing.Point(825, 122);
+            this.CheckboxStartMaxReload.Name = "CheckboxStartMaxReload";
+            this.CheckboxStartMaxReload.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxStartMaxReload.TabIndex = 71;
+            this.CheckboxStartMaxReload.Text = "自动开车-重启不过帧";
+            this.CheckboxStartMaxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxStartMaxReload.UseVisualStyleBackColor = true;
+            this.CheckboxStartMaxReload.CheckedChanged += new System.EventHandler(this.CheckboxStartMaxReload_CheckedChanged);
+            // 
+            // CheckboxPlus3DaysStartMaxReload
+            // 
+            this.CheckboxPlus3DaysStartMaxReload.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxPlus3DaysStartMaxReload.Location = new System.Drawing.Point(953, 122);
+            this.CheckboxPlus3DaysStartMaxReload.Name = "CheckboxPlus3DaysStartMaxReload";
+            this.CheckboxPlus3DaysStartMaxReload.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxPlus3DaysStartMaxReload.TabIndex = 72;
+            this.CheckboxPlus3DaysStartMaxReload.Text = "自动开车-过3帧重启(需设置日期)";
+            this.CheckboxPlus3DaysStartMaxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxPlus3DaysStartMaxReload.UseVisualStyleBackColor = true;
+            this.CheckboxPlus3DaysStartMaxReload.CheckedChanged += new System.EventHandler(this.CheckboxPlus3DaysStartMaxReload_CheckedChanged);
+            // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 461);
+            this.ClientSize = new System.Drawing.Size(1069, 461);
+            this.Controls.Add(this.CheckboxPlus3DaysStartMaxReload);
+            this.Controls.Add(this.CheckboxStartMaxReload);
             this.Controls.Add(this.CheckboxDisconnectThenConnect);
             this.Controls.Add(this.CheckboxDisconnect);
             this.Controls.Add(this.label9);
@@ -1045,6 +1073,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox CheckboxDisconnect;
         private System.Windows.Forms.CheckBox CheckboxDisconnectThenConnect;
+        private System.Windows.Forms.CheckBox CheckboxStartMaxReload;
+        private System.Windows.Forms.CheckBox CheckboxPlus3DaysStartMaxReload;
     }
 }
 

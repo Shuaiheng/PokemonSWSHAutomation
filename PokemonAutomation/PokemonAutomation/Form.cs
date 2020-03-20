@@ -862,6 +862,40 @@ namespace PokemonAutomation
             DayComboBox.Enabled = true;
         }
 
+        private async Task Reload()
+        {
+            await Task.Delay(300);
+            pressButton(ButtonType.HOME);
+            await Task.Delay(40);
+            releaseButton(ButtonType.HOME);
+            await Task.Delay(1000);
+            // shut down the software
+            pressButton(ButtonType.X);
+            await Task.Delay(40);
+            releaseButton(ButtonType.X);
+            await Task.Delay(300);
+            // confirm
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(5000);
+            // start the game
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(1000);
+            // confirm account
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(18000);
+            // skip the opening animation
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(10000);
+        }
+
         private async void ReloadThenPlus3Days_CheckedChanged(object sender, EventArgs e)
         {
             DayComboBox.Enabled = false;
@@ -872,37 +906,9 @@ namespace PokemonAutomation
                     token_source = new CancellationTokenSource();
                     cancel_token = token_source.Token;
 
-                    await Task.Delay(300);
-                    pressButton(ButtonType.HOME);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.HOME);
-                    await Task.Delay(300);
-                    // shut down the software
-                    pressButton(ButtonType.X);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.X);
-                    await Task.Delay(300);
-                    // confirm
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
-                    await Task.Delay(5000);
-                    // start the game
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
+                    await Reload();
                     await Task.Delay(1000);
-                    // confirm account
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
-                    await Task.Delay(18000);
-                    // skip the opening animation
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
-                    await Task.Delay(13000);
-                    // get into the raid
+                    // get into the den
                     pressButton(ButtonType.A);
                     await Task.Delay(40);
                     releaseButton(ButtonType.A);
@@ -1111,7 +1117,7 @@ namespace PokemonAutomation
                             {
                                 return;
                             }
-                            if (i !=0 && i % 150 == 0)
+                            if (i !=0 && i % 200 == 0)
                             {
                                 await SaveThenBackToPlusNDays();
                                 await Task.Delay(2000);
@@ -1547,7 +1553,7 @@ namespace PokemonAutomation
                         pressButton(ButtonType.A);
                         await Task.Delay(40);
                         releaseButton(ButtonType.A);
-                        await Task.Delay(130000);
+                        await Task.Delay(100000);
 
                         // start
                         pressButton(ButtonType.UP);
@@ -1575,7 +1581,7 @@ namespace PokemonAutomation
 
                         await DisconnectFromTheInternet();
                         
-                        await Task.Delay(20000);
+                        await Task.Delay(25000);
                     }
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
@@ -1591,6 +1597,192 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
             CodeTextBox.Enabled = true;
+        }
+
+        private async void CheckboxStartMaxReload_CheckedChanged(object sender, EventArgs e)
+        {
+            CodeTextBox.Enabled = false;
+            if (CheckboxStartMaxReload.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int code = int.Parse(CodeTextBox.Text);
+
+                    for (uint j = 0; j < 100; j++)
+                    {
+                        await ConnectToTheInternet();
+                        pressButton(ButtonType.Y);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.Y);
+                        await Task.Delay(1500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(10000);
+                        if (code != 0)
+                        {
+                            pressButton(ButtonType.PLUS);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.PLUS);
+                            await Task.Delay(1000);
+                            await InputCode(code);
+                        }
+
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(100000);
+
+                        // start
+                        pressButton(ButtonType.UP);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.UP);
+                        await Task.Delay(300);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+
+                        // in case there are less than 4 players
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(15000);
+
+                        await Reload();
+                        await Task.Delay(1000);
+                    }
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxStartMaxReload.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            CodeTextBox.Enabled = true;
+        }
+
+        private async void CheckboxPlus3DaysStartMaxReload_CheckedChanged(object sender, EventArgs e)
+        {
+            CodeTextBox.Enabled = false;
+            DayComboBox.Enabled = false;
+            if (CheckboxPlus3DaysStartMaxReload.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int code = int.Parse(CodeTextBox.Text);
+
+                    for (uint j = 0; j < 100; j++)
+                    {
+                        // get into the den
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+
+                        await Task.Run(async () =>
+                        {
+                            for (uint i = 0; i < 3; ++i)
+                            {
+                                if (cancel_token.IsCancellationRequested)
+                                {
+                                    return;
+                                }
+
+                                await increaseDateWithRaidHole();
+                            }
+                        }, cancel_token);
+
+                        pressButton(ButtonType.B);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.B);
+                        await Task.Delay(1000);
+
+                        await ConnectToTheInternet();
+                        pressButton(ButtonType.Y);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.Y);
+                        await Task.Delay(1500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(10000);
+                        if (code != 0)
+                        {
+                            pressButton(ButtonType.PLUS);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.PLUS);
+                            await Task.Delay(1000);
+                            await InputCode(code);
+                        }
+
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(100000);
+
+                        // start
+                        pressButton(ButtonType.UP);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.UP);
+                        await Task.Delay(300);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+
+                        // in case there are less than 4 players
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(15000);
+
+                        await Reload();
+                        await Task.Delay(1000);
+                    }
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxPlus3DaysStartMaxReload.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            CodeTextBox.Enabled = true;
+            DayComboBox.Enabled = true;
         }
 
         private async void CheckBoxConnetToDudu_CheckedChanged(object sender, EventArgs e)
@@ -1740,7 +1932,7 @@ namespace PokemonAutomation
                     int code = int.Parse(CodeTextBox.Text);
 
                     await DisconnectFromTheInternet();
-                    await Task.Delay(20000);
+                    await Task.Delay(25000);
 
                     await ConnectToTheInternet();
                     pressButton(ButtonType.Y);
