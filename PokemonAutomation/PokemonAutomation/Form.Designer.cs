@@ -87,16 +87,32 @@
             this.CodeTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.CheckboxStartMax = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.CheckBoxConnetToDudu = new System.Windows.Forms.CheckBox();
             this.DuduIP = new System.Windows.Forms.LinkLabel();
-            this.label8 = new System.Windows.Forms.Label();
             this.CheckboxConnectAndInputCode = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.CheckboxDisconnect = new System.Windows.Forms.CheckBox();
             this.CheckboxDisconnectThenConnect = new System.Windows.Forms.CheckBox();
             this.CheckboxStartMaxReload = new System.Windows.Forms.CheckBox();
             this.CheckboxPlus3DaysStartMaxReload = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // up
@@ -152,7 +168,7 @@
             // comPortComboBox
             // 
             this.comPortComboBox.FormattingEnabled = true;
-            this.comPortComboBox.Location = new System.Drawing.Point(25, 24);
+            this.comPortComboBox.Location = new System.Drawing.Point(25, 29);
             this.comPortComboBox.Name = "comPortComboBox";
             this.comPortComboBox.Size = new System.Drawing.Size(121, 20);
             this.comPortComboBox.TabIndex = 5;
@@ -470,25 +486,26 @@
             // CheckboxLotoID
             // 
             this.CheckboxLotoID.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxLotoID.Location = new System.Drawing.Point(623, 401);
+            this.CheckboxLotoID.Font = new System.Drawing.Font("宋体", 8F);
+            this.CheckboxLotoID.Location = new System.Drawing.Point(557, 315);
             this.CheckboxLotoID.Name = "CheckboxLotoID";
             this.CheckboxLotoID.Size = new System.Drawing.Size(104, 34);
             this.CheckboxLotoID.TabIndex = 36;
-            this.CheckboxLotoID.Text = "Loto ID";
+            this.CheckboxLotoID.Text = "宝可梦中心ID抽奖";
             this.CheckboxLotoID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxLotoID.UseVisualStyleBackColor = true;
             this.CheckboxLotoID.CheckedChanged += new System.EventHandler(this.CheckboxLotoID_CheckedChanged);
             // 
             // DayTextboxWithRaidHole
             // 
-            this.DayTextboxWithRaidHole.Location = new System.Drawing.Point(569, 202);
+            this.DayTextboxWithRaidHole.Location = new System.Drawing.Point(568, 198);
             this.DayTextboxWithRaidHole.Name = "DayTextboxWithRaidHole";
             this.DayTextboxWithRaidHole.Size = new System.Drawing.Size(104, 21);
             this.DayTextboxWithRaidHole.TabIndex = 40;
             // 
             // DayTextbox
             // 
-            this.DayTextbox.Location = new System.Drawing.Point(569, 309);
+            this.DayTextbox.Location = new System.Drawing.Point(835, 118);
             this.DayTextbox.Name = "DayTextbox";
             this.DayTextbox.Size = new System.Drawing.Size(104, 21);
             this.DayTextbox.TabIndex = 40;
@@ -496,17 +513,17 @@
             // LabelDate
             // 
             this.LabelDate.AutoSize = true;
-            this.LabelDate.Location = new System.Drawing.Point(556, 77);
+            this.LabelDate.Location = new System.Drawing.Point(833, 34);
             this.LabelDate.Name = "LabelDate";
-            this.LabelDate.Size = new System.Drawing.Size(41, 12);
+            this.LabelDate.Size = new System.Drawing.Size(65, 12);
             this.LabelDate.TabIndex = 42;
-            this.LabelDate.Text = "日期：";
+            this.LabelDate.Text = "当前日期：";
             this.LabelDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CheckboxPlus3Days
             // 
             this.CheckboxPlus3Days.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus3Days.Location = new System.Drawing.Point(689, 96);
+            this.CheckboxPlus3Days.Location = new System.Drawing.Point(688, 92);
             this.CheckboxPlus3Days.Name = "CheckboxPlus3Days";
             this.CheckboxPlus3Days.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus3Days.TabIndex = 43;
@@ -518,7 +535,7 @@
             // CheckboxPlus4Days
             // 
             this.CheckboxPlus4Days.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus4Days.Location = new System.Drawing.Point(558, 143);
+            this.CheckboxPlus4Days.Location = new System.Drawing.Point(557, 139);
             this.CheckboxPlus4Days.Name = "CheckboxPlus4Days";
             this.CheckboxPlus4Days.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus4Days.TabIndex = 44;
@@ -530,7 +547,7 @@
             // CheckboxPlusNDaysWithRaidHole
             // 
             this.CheckboxPlusNDaysWithRaidHole.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlusNDaysWithRaidHole.Location = new System.Drawing.Point(679, 197);
+            this.CheckboxPlusNDaysWithRaidHole.Location = new System.Drawing.Point(678, 193);
             this.CheckboxPlusNDaysWithRaidHole.Name = "CheckboxPlusNDaysWithRaidHole";
             this.CheckboxPlusNDaysWithRaidHole.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDaysWithRaidHole.TabIndex = 56;
@@ -542,7 +559,7 @@
             // ReloadThenPlus3Days
             // 
             this.ReloadThenPlus3Days.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ReloadThenPlus3Days.Location = new System.Drawing.Point(689, 143);
+            this.ReloadThenPlus3Days.Location = new System.Drawing.Point(688, 139);
             this.ReloadThenPlus3Days.Name = "ReloadThenPlus3Days";
             this.ReloadThenPlus3Days.Size = new System.Drawing.Size(104, 32);
             this.ReloadThenPlus3Days.TabIndex = 56;
@@ -554,7 +571,7 @@
             // CheckboxPlus1Day
             // 
             this.CheckboxPlus1Day.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus1Day.Location = new System.Drawing.Point(558, 96);
+            this.CheckboxPlus1Day.Location = new System.Drawing.Point(557, 92);
             this.CheckboxPlus1Day.Name = "CheckboxPlus1Day";
             this.CheckboxPlus1Day.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus1Day.TabIndex = 45;
@@ -728,7 +745,7 @@
             // CountLabelWithRaidHole
             // 
             this.CountLabelWithRaidHole.AutoSize = true;
-            this.CountLabelWithRaidHole.Location = new System.Drawing.Point(567, 234);
+            this.CountLabelWithRaidHole.Location = new System.Drawing.Point(566, 230);
             this.CountLabelWithRaidHole.Name = "CountLabelWithRaidHole";
             this.CountLabelWithRaidHole.Size = new System.Drawing.Size(65, 12);
             this.CountLabelWithRaidHole.TabIndex = 52;
@@ -737,7 +754,7 @@
             // CountLabel
             // 
             this.CountLabel.AutoSize = true;
-            this.CountLabel.Location = new System.Drawing.Point(567, 340);
+            this.CountLabel.Location = new System.Drawing.Point(833, 149);
             this.CountLabel.Name = "CountLabel";
             this.CountLabel.Size = new System.Drawing.Size(65, 12);
             this.CountLabel.TabIndex = 52;
@@ -746,7 +763,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 6);
+            this.label4.Location = new System.Drawing.Point(25, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 53;
@@ -755,7 +772,7 @@
             // CheckboxPlusNDays
             // 
             this.CheckboxPlusNDays.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlusNDays.Location = new System.Drawing.Point(679, 277);
+            this.CheckboxPlusNDays.Location = new System.Drawing.Point(945, 86);
             this.CheckboxPlusNDays.Name = "CheckboxPlusNDays";
             this.CheckboxPlusNDays.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDays.TabIndex = 54;
@@ -767,7 +784,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(720, 312);
+            this.label5.Location = new System.Drawing.Point(986, 121);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(17, 12);
             this.label5.TabIndex = 57;
@@ -776,7 +793,7 @@
             // CheckboxPlusNDaysWithSave
             // 
             this.CheckboxPlusNDaysWithSave.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlusNDaysWithSave.Location = new System.Drawing.Point(679, 330);
+            this.CheckboxPlusNDaysWithSave.Location = new System.Drawing.Point(945, 139);
             this.CheckboxPlusNDaysWithSave.Name = "CheckboxPlusNDaysWithSave";
             this.CheckboxPlusNDaysWithSave.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDaysWithSave.TabIndex = 58;
@@ -787,7 +804,7 @@
             // 
             // CodeTextBox
             // 
-            this.CodeTextBox.Location = new System.Drawing.Point(896, 52);
+            this.CodeTextBox.Location = new System.Drawing.Point(103, 497);
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(86, 21);
             this.CodeTextBox.TabIndex = 60;
@@ -795,16 +812,17 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(898, 32);
+            this.label7.Font = new System.Drawing.Font("宋体", 12F);
+            this.label7.Location = new System.Drawing.Point(25, 499);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 12);
+            this.label7.Size = new System.Drawing.Size(72, 16);
             this.label7.TabIndex = 61;
-            this.label7.Text = "四位密码-必填";
+            this.label7.Text = "四位密码";
             // 
             // CheckboxStartMax
             // 
             this.CheckboxStartMax.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxStartMax.Location = new System.Drawing.Point(889, 168);
+            this.CheckboxStartMax.Location = new System.Drawing.Point(261, 568);
             this.CheckboxStartMax.Name = "CheckboxStartMax";
             this.CheckboxStartMax.Size = new System.Drawing.Size(104, 32);
             this.CheckboxStartMax.TabIndex = 62;
@@ -813,19 +831,10 @@
             this.CheckboxStartMax.UseVisualStyleBackColor = true;
             this.CheckboxStartMax.CheckedChanged += new System.EventHandler(this.CheckboxStartMax_CheckedChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(898, 79);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 12);
-            this.label6.TabIndex = 63;
-            this.label6.Text = "若密码只包含0";
-            // 
             // CheckBoxConnetToDudu
             // 
             this.CheckBoxConnetToDudu.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckBoxConnetToDudu.Location = new System.Drawing.Point(889, 383);
+            this.CheckBoxConnetToDudu.Location = new System.Drawing.Point(557, 365);
             this.CheckBoxConnetToDudu.Name = "CheckBoxConnetToDudu";
             this.CheckBoxConnetToDudu.Size = new System.Drawing.Size(104, 32);
             this.CheckBoxConnetToDudu.TabIndex = 64;
@@ -837,7 +846,7 @@
             // DuduIP
             // 
             this.DuduIP.AutoSize = true;
-            this.DuduIP.Location = new System.Drawing.Point(909, 418);
+            this.DuduIP.Location = new System.Drawing.Point(667, 385);
             this.DuduIP.Name = "DuduIP";
             this.DuduIP.Size = new System.Drawing.Size(65, 12);
             this.DuduIP.TabIndex = 65;
@@ -845,19 +854,10 @@
             this.DuduIP.Text = "Dudu的网址";
             this.DuduIP.Click += new System.EventHandler(this.DuduIP_LinkClick);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(902, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 12);
-            this.label8.TabIndex = 66;
-            this.label8.Text = "则视为无密码";
-            // 
             // CheckboxConnectAndInputCode
             // 
             this.CheckboxConnectAndInputCode.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxConnectAndInputCode.Location = new System.Drawing.Point(825, 258);
+            this.CheckboxConnectAndInputCode.Location = new System.Drawing.Point(607, 474);
             this.CheckboxConnectAndInputCode.Name = "CheckboxConnectAndInputCode";
             this.CheckboxConnectAndInputCode.Size = new System.Drawing.Size(104, 32);
             this.CheckboxConnectAndInputCode.TabIndex = 67;
@@ -869,17 +869,17 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("宋体", 12F);
-            this.label9.Location = new System.Drawing.Point(899, 222);
+            this.label9.Font = new System.Drawing.Font("宋体", 11F);
+            this.label9.Location = new System.Drawing.Point(282, 456);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 16);
+            this.label9.Size = new System.Drawing.Size(67, 15);
             this.label9.TabIndex = 68;
-            this.label9.Text = "半自动开车";
+            this.label9.Text = "自动发车";
             // 
             // CheckboxDisconnect
             // 
             this.CheckboxDisconnect.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxDisconnect.Location = new System.Drawing.Point(889, 302);
+            this.CheckboxDisconnect.Location = new System.Drawing.Point(607, 568);
             this.CheckboxDisconnect.Name = "CheckboxDisconnect";
             this.CheckboxDisconnect.Size = new System.Drawing.Size(104, 32);
             this.CheckboxDisconnect.TabIndex = 69;
@@ -892,7 +892,7 @@
             // 
             this.CheckboxDisconnectThenConnect.Appearance = System.Windows.Forms.Appearance.Button;
             this.CheckboxDisconnectThenConnect.Font = new System.Drawing.Font("宋体", 8F);
-            this.CheckboxDisconnectThenConnect.Location = new System.Drawing.Point(953, 258);
+            this.CheckboxDisconnectThenConnect.Location = new System.Drawing.Point(607, 521);
             this.CheckboxDisconnectThenConnect.Name = "CheckboxDisconnectThenConnect";
             this.CheckboxDisconnectThenConnect.Size = new System.Drawing.Size(104, 32);
             this.CheckboxDisconnectThenConnect.TabIndex = 70;
@@ -904,11 +904,11 @@
             // CheckboxStartMaxReload
             // 
             this.CheckboxStartMaxReload.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxStartMaxReload.Location = new System.Drawing.Point(825, 122);
+            this.CheckboxStartMaxReload.Location = new System.Drawing.Point(261, 474);
             this.CheckboxStartMaxReload.Name = "CheckboxStartMaxReload";
             this.CheckboxStartMaxReload.Size = new System.Drawing.Size(104, 32);
             this.CheckboxStartMaxReload.TabIndex = 71;
-            this.CheckboxStartMaxReload.Text = "自动开车-重启不过帧";
+            this.CheckboxStartMaxReload.Text = "自动开车-重启";
             this.CheckboxStartMaxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxStartMaxReload.UseVisualStyleBackColor = true;
             this.CheckboxStartMaxReload.CheckedChanged += new System.EventHandler(this.CheckboxStartMaxReload_CheckedChanged);
@@ -916,30 +916,217 @@
             // CheckboxPlus3DaysStartMaxReload
             // 
             this.CheckboxPlus3DaysStartMaxReload.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxPlus3DaysStartMaxReload.Location = new System.Drawing.Point(953, 122);
+            this.CheckboxPlus3DaysStartMaxReload.Location = new System.Drawing.Point(261, 521);
             this.CheckboxPlus3DaysStartMaxReload.Name = "CheckboxPlus3DaysStartMaxReload";
             this.CheckboxPlus3DaysStartMaxReload.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus3DaysStartMaxReload.TabIndex = 72;
-            this.CheckboxPlus3DaysStartMaxReload.Text = "自动开车-过3帧重启(需设置日期)";
+            this.CheckboxPlus3DaysStartMaxReload.Text = "随机车(需设置日期)";
             this.CheckboxPlus3DaysStartMaxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlus3DaysStartMaxReload.UseVisualStyleBackColor = true;
             this.CheckboxPlus3DaysStartMaxReload.CheckedChanged += new System.EventHandler(this.CheckboxPlus3DaysStartMaxReload_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(371, 484);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 12);
+            this.label8.TabIndex = 73;
+            this.label8.Text = "锁坑后使用";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(371, 531);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(221, 12);
+            this.label10.TabIndex = 74;
+            this.label10.Text = "未锁坑，过三帧后开车，团战开始后重启";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(371, 578);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(209, 12);
+            this.label11.TabIndex = 75;
+            this.label11.Text = "未锁坑，团战开始后断网（稳定性差）";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("宋体", 11F);
+            this.label12.Location = new System.Drawing.Point(618, 456);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 15);
+            this.label12.TabIndex = 76;
+            this.label12.Text = "半自动发车";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("宋体", 13F);
+            this.label13.Location = new System.Drawing.Point(28, 521);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(172, 20);
+            this.label13.TabIndex = 77;
+            this.label13.Text = "断网状态下站在坑前";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(717, 484);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(89, 12);
+            this.label14.TabIndex = 78;
+            this.label14.Text = "需手动开始团战";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(718, 531);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(149, 12);
+            this.label15.TabIndex = 79;
+            this.label15.Text = "团战开始前人物起身时可用";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(718, 578);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(149, 12);
+            this.label16.TabIndex = 80;
+            this.label16.Text = "团战开始前人物起身时可用";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Font = new System.Drawing.Font("宋体", 13F);
+            this.label6.Location = new System.Drawing.Point(155, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 20);
+            this.label6.TabIndex = 81;
+            this.label6.Text = "端口必须设置";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(569, 258);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(167, 12);
+            this.label18.TabIndex = 83;
+            this.label18.Text = "以上按钮在按A进入坑内后使用";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(569, 275);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(197, 12);
+            this.label19.TabIndex = 84;
+            this.label19.Text = "光标必须停留在“大家一起挑战”上";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(833, 186);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(197, 12);
+            this.label17.TabIndex = 85;
+            this.label17.Text = "对战结束后断网，进入主机时间设置";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(833, 205);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(233, 12);
+            this.label20.TabIndex = 86;
+            this.label20.Text = "将光标停留在“现在的日期与时间”后使用";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(833, 224);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(77, 12);
+            this.label21.TabIndex = 87;
+            this.label21.Text = "建议室内过帧";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(667, 326);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(221, 12);
+            this.label22.TabIndex = 88;
+            this.label22.Text = "对战结束后断网，站在宝可梦中心洛米前";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(667, 365);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(287, 12);
+            this.label23.TabIndex = 89;
+            this.label23.Text = "联网状态下使用，自动按Y设置交换密码，需手动退出";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label24.Font = new System.Drawing.Font("宋体", 13F);
+            this.label24.Location = new System.Drawing.Point(723, 61);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(154, 20);
+            this.label24.TabIndex = 90;
+            this.label24.Text = "过帧前需设置日期";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label25.Font = new System.Drawing.Font("宋体", 13F);
+            this.label25.Location = new System.Drawing.Point(28, 544);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(217, 20);
+            this.label25.TabIndex = 91;
+            this.label25.Text = "密码必填 0000视为无密码";
             // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 461);
+            this.ClientSize = new System.Drawing.Size(1079, 609);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.CheckboxPlus3DaysStartMaxReload);
             this.Controls.Add(this.CheckboxStartMaxReload);
             this.Controls.Add(this.CheckboxDisconnectThenConnect);
             this.Controls.Add(this.CheckboxDisconnect);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.CheckboxConnectAndInputCode);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.DuduIP);
             this.Controls.Add(this.CheckBoxConnetToDudu);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.CheckboxStartMax);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.CodeTextBox);
@@ -1065,16 +1252,32 @@
         private System.Windows.Forms.TextBox CodeTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox CheckboxStartMax;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox CheckBoxConnetToDudu;
         private System.Windows.Forms.LinkLabel DuduIP;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox CheckboxConnectAndInputCode;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox CheckboxDisconnect;
         private System.Windows.Forms.CheckBox CheckboxDisconnectThenConnect;
         private System.Windows.Forms.CheckBox CheckboxStartMaxReload;
         private System.Windows.Forms.CheckBox CheckboxPlus3DaysStartMaxReload;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
     }
 }
 

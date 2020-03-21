@@ -81,7 +81,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateDateLabel(this.updateDateLabel));
                 return;
             }
-            LabelDate.Text = "日期： " + current_date.ToString("yyyy/MM/dd");
+            LabelDate.Text = "当前日期： " + current_date.ToString("yyyy/MM/dd");
         }
 
         private delegate void delegateUpdateCountLabelWithRaidHole(int count, int max);
