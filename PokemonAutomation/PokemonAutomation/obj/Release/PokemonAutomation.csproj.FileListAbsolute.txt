@@ -25,12 +25,12 @@ D:\Code\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.csproj
 D:\Code\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.exe
 D:\Code\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.pdb
 D:\Code\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.csprojResolveAssemblyReference.cache
-D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.exe.config
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.exe
-D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.pdb
+D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.exe.config
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.PokemonAutomation.resources
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.Properties.Resources.resources
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.csproj.GenerateResource.Cache
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.exe
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.pdb
+D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.pdb
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.csprojResolveAssemblyReference.cache

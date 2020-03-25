@@ -93,7 +93,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateCountLabelWithRaidHole(this.updateCountLabelWithRaidHole), count, max);
                 return;
             }
-            CountLabelWithRaidHole.Text = "已过帧数：" + count.ToString() + "/" + max.ToString();
+            CountLabelWithRaidHole.Text = "已过帧数：" + count.ToString();
         }
 
         private delegate void delegateUpdateCountLabel(int count, int max);
@@ -105,7 +105,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateCountLabel(this.updateCountLabel), count, max);
                 return;
             }
-            CountLabel.Text = "已过帧数： " + count.ToString() + "/" + max.ToString();
+            CountLabel.Text = "已过帧数： " + count.ToString();
         }
 
 
@@ -878,7 +878,7 @@ namespace PokemonAutomation
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
-            await Task.Delay(5000);
+            await Task.Delay(4000);
             // start the game
             pressButton(ButtonType.A);
             await Task.Delay(40);
@@ -888,7 +888,7 @@ namespace PokemonAutomation
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
-            await Task.Delay(18000);
+            await Task.Delay(17000);
             // skip the opening animation
             pressButton(ButtonType.A);
             await Task.Delay(40);
@@ -1117,10 +1117,10 @@ namespace PokemonAutomation
                             {
                                 return;
                             }
-                            if (i !=0 && i % 200 == 0)
+                            if (i !=0 && i % 300 == 0)
                             {
                                 await SaveThenBackToPlusNDays();
-                                await Task.Delay(2000);
+                                await Task.Delay(1000);
                             }
 
                             await increaseDate();
@@ -1327,49 +1327,49 @@ namespace PokemonAutomation
 
         private async Task NumberPanelGoUp(int step)
         {
-            await Task.Delay(300);
+            await Task.Delay(50);
             for (uint i = 0; i < step; ++i)
             {
                 pressButton(ButtonType.UP);
                 await Task.Delay(40);
                 releaseButton(ButtonType.UP);
-                await Task.Delay(100);
+                await Task.Delay(50);
             }   
         }
 
         private async Task NumberPanelGoDown(int step)
         {
-            await Task.Delay(300);
+            await Task.Delay(50);
             for (uint i = 0; i < step; ++i)
             {
                 pressButton(ButtonType.DOWN);
                 await Task.Delay(40);
                 releaseButton(ButtonType.DOWN);
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
         }
 
         private async Task NumberPanelGoLeft(int step)
         {
-            await Task.Delay(300);
+            await Task.Delay(50);
             for (uint i = 0; i < step; ++i)
             {
                 pressButton(ButtonType.LEFT);
                 await Task.Delay(40);
                 releaseButton(ButtonType.LEFT);
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
         }
 
         private async Task NumberPanelGoRight(int step)
         {
-            await Task.Delay(300);
+            await Task.Delay(50);
             for (uint i = 0; i < step; ++i)
             {
                 pressButton(ButtonType.RIGHT);
                 await Task.Delay(40);
                 releaseButton(ButtonType.RIGHT);
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
         }
 
@@ -1480,7 +1480,7 @@ namespace PokemonAutomation
             pressButton(ButtonType.PLUS);
             await Task.Delay(40);
             releaseButton(ButtonType.PLUS);
-            await Task.Delay(20000);
+            await Task.Delay(18000);
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
@@ -1491,7 +1491,7 @@ namespace PokemonAutomation
         {
             await Task.Delay(300);
             pressButton(ButtonType.HOME);
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             releaseButton(ButtonType.HOME);
             await Task.Delay(500);
             for (uint i = 0; i < 4; ++i)
@@ -1499,7 +1499,7 @@ namespace PokemonAutomation
                 pressButton(ButtonType.DOWN);
                 await Task.Delay(40);
                 releaseButton(ButtonType.DOWN);
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
             for (uint i = 0; i < 2; ++i)
             {
@@ -1529,60 +1529,67 @@ namespace PokemonAutomation
                     cancel_token = token_source.Token;
 
                     int code = int.Parse(CodeTextBox.Text);
-                    
-                    for (uint j = 0; j < 100; j++)
+
+                    await Task.Run(async () =>
                     {
-                        await ConnectToTheInternet();
-                        pressButton(ButtonType.Y);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.Y);
-                        await Task.Delay(1500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(10000);
-                        if (code != 0)
+                        if (cancel_token.IsCancellationRequested)
                         {
-                            pressButton(ButtonType.PLUS);
-                            await Task.Delay(40);
-                            releaseButton(ButtonType.PLUS);
-                            await Task.Delay(1000);
-                            await InputCode(code);
+                            return;
                         }
+                        while (true)
+                        {
+                            await ConnectToTheInternet();
+                            pressButton(ButtonType.Y);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.Y);
+                            await Task.Delay(2500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(9000);
+                            if (code != 0)
+                            {
+                                pressButton(ButtonType.PLUS);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.PLUS);
+                                await Task.Delay(1000);
+                                await InputCode(code);
+                            }
 
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(100000);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(10000);
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(90000);
 
-                        // start
-                        pressButton(ButtonType.UP);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.UP);
-                        await Task.Delay(300);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
+                            // start
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(1000);
 
-                        // in case there are less than 4 players
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(15000);
+                            // in case there are less than 4 players
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(1000);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(15000);
 
-                        await DisconnectFromTheInternet();
-                        
-                        await Task.Delay(25000);
-                    }
+                            await DisconnectFromTheInternet();
+
+                            await Task.Delay(25000);
+                        }
+                    }, cancel_token);
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1611,58 +1618,65 @@ namespace PokemonAutomation
 
                     int code = int.Parse(CodeTextBox.Text);
 
-                    for (uint j = 0; j < 100; j++)
+                    await Task.Run(async () =>
                     {
-                        await ConnectToTheInternet();
-                        pressButton(ButtonType.Y);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.Y);
-                        await Task.Delay(1500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(10000);
-                        if (code != 0)
+                        while (true)
                         {
-                            pressButton(ButtonType.PLUS);
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            await ConnectToTheInternet();
+                            pressButton(ButtonType.Y);
                             await Task.Delay(40);
-                            releaseButton(ButtonType.PLUS);
+                            releaseButton(ButtonType.Y);
+                            await Task.Delay(2500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(9000);
+                            if (code != 0)
+                            {
+                                pressButton(ButtonType.PLUS);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.PLUS);
+                                await Task.Delay(1000);
+                                await InputCode(code);
+                            }
+
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(10000);
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(90000);
+
+                            // start
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
                             await Task.Delay(1000);
-                            await InputCode(code);
+
+                            // in case there are less than 4 players
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(1000);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(15000);
+
+                            await Reload();
+                            await Task.Delay(1000);
                         }
-
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(100000);
-
-                        // start
-                        pressButton(ButtonType.UP);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.UP);
-                        await Task.Delay(300);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-
-                        // in case there are less than 4 players
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(15000);
-
-                        await Reload();
-                        await Task.Delay(1000);
-                    }
+                    }, cancel_token);
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1692,82 +1706,89 @@ namespace PokemonAutomation
 
                     int code = int.Parse(CodeTextBox.Text);
 
-                    for (uint j = 0; j < 100; j++)
+                    await Task.Run(async () =>
                     {
-                        // get into the den
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-
-                        await Task.Run(async () =>
+                        while (true)
                         {
-                            for (uint i = 0; i < 3; ++i)
+                            if (cancel_token.IsCancellationRequested)
                             {
-                                if (cancel_token.IsCancellationRequested)
-                                {
-                                    return;
-                                }
-
-                                await increaseDateWithRaidHole();
+                                return;
                             }
-                        }, cancel_token);
-
-                        pressButton(ButtonType.B);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.B);
-                        await Task.Delay(1000);
-
-                        await ConnectToTheInternet();
-                        pressButton(ButtonType.Y);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.Y);
-                        await Task.Delay(1500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(10000);
-                        if (code != 0)
-                        {
-                            pressButton(ButtonType.PLUS);
+                            // get into the den
+                            pressButton(ButtonType.A);
                             await Task.Delay(40);
-                            releaseButton(ButtonType.PLUS);
+                            releaseButton(ButtonType.A);
                             await Task.Delay(1000);
-                            await InputCode(code);
+
+                            await Task.Run(async () =>
+                            {
+                                for (uint i = 0; i < 3; ++i)
+                                {
+                                    if (cancel_token.IsCancellationRequested)
+                                    {
+                                        return;
+                                    }
+
+                                    await increaseDateWithRaidHole();
+                                }
+                            }, cancel_token);
+
+                            pressButton(ButtonType.B);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.B);
+                            await Task.Delay(1000);
+
+                            await ConnectToTheInternet();
+                            pressButton(ButtonType.Y);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.Y);
+                            await Task.Delay(2500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(9000);
+                            if (code != 0)
+                            {
+                                pressButton(ButtonType.PLUS);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.PLUS);
+                                await Task.Delay(1000);
+                                await InputCode(code);
+                            }
+
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(10000);
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(90000);
+
+                            // start
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(500);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(1000);
+
+                            // in case there are less than 4 players
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(1000);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(15000);
+
+                            await Reload();
+                            await Task.Delay(1000);
                         }
-
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(100000);
-
-                        // start
-                        pressButton(ButtonType.UP);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.UP);
-                        await Task.Delay(300);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(500);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-
-                        // in case there are less than 4 players
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(1000);
-                        pressButton(ButtonType.A);
-                        await Task.Delay(40);
-                        releaseButton(ButtonType.A);
-                        await Task.Delay(15000);
-
-                        await Reload();
-                        await Task.Delay(1000);
-                    }
+                    }, cancel_token);
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1860,11 +1881,11 @@ namespace PokemonAutomation
                     pressButton(ButtonType.Y);
                     await Task.Delay(40);
                     releaseButton(ButtonType.Y);
-                    await Task.Delay(1500);
+                    await Task.Delay(2500);
                     pressButton(ButtonType.A);
                     await Task.Delay(40);
                     releaseButton(ButtonType.A);
-                    await Task.Delay(10000);
+                    await Task.Delay(9000);
                     if (code != 0)
                     {
                         pressButton(ButtonType.PLUS);
@@ -1873,11 +1894,6 @@ namespace PokemonAutomation
                         await Task.Delay(1000);
                         await InputCode(code);
                     }
-
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
-                    await Task.Delay(300);
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1938,11 +1954,12 @@ namespace PokemonAutomation
                     pressButton(ButtonType.Y);
                     await Task.Delay(40);
                     releaseButton(ButtonType.Y);
-                    await Task.Delay(1500);
+                    await Task.Delay(2500);
                     pressButton(ButtonType.A);
                     await Task.Delay(40);
                     releaseButton(ButtonType.A);
-                    await Task.Delay(10000);
+                    await Task.Delay(9000);
+                   
                     if (code != 0)
                     {
                         pressButton(ButtonType.PLUS);
@@ -1951,11 +1968,7 @@ namespace PokemonAutomation
                         await Task.Delay(1000);
                         await InputCode(code);
                     }
-
-                    pressButton(ButtonType.A);
-                    await Task.Delay(40);
-                    releaseButton(ButtonType.A);
-                    await Task.Delay(300);
+                   
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1972,9 +1985,47 @@ namespace PokemonAutomation
             CodeTextBox.Enabled = true;
         }
 
-        private async void DuduIP_LinkClick(object sender, EventArgs e)
+        private void DuduIP_LinkClick(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("iexplore.exe", "http://116.202.105.91/");
+        }
+
+        private async void CheckBoxACombo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBoxACombo.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await Task.Run(async () =>
+                    {
+                        while(true)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(300);
+                        }
+                    }, cancel_token);
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckBoxACombo.Checked = false;                
+            }
+            else
+            {
+                token_source.Cancel();
+            }
         }
     }
 }
