@@ -114,6 +114,10 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.CheckBoxACombo = new System.Windows.Forms.CheckBox();
+            this.CheckboxReceiveEggs = new System.Windows.Forms.CheckBox();
+            this.CheckboxIncubation = new System.Windows.Forms.CheckBox();
+            this.EggTextbox = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // up
@@ -1100,7 +1104,7 @@
             // CheckBoxACombo
             // 
             this.CheckBoxACombo.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckBoxACombo.Location = new System.Drawing.Point(914, 439);
+            this.CheckBoxACombo.Location = new System.Drawing.Point(914, 417);
             this.CheckBoxACombo.Name = "CheckBoxACombo";
             this.CheckBoxACombo.Size = new System.Drawing.Size(104, 32);
             this.CheckBoxACombo.TabIndex = 92;
@@ -1109,11 +1113,55 @@
             this.CheckBoxACombo.UseVisualStyleBackColor = true;
             this.CheckBoxACombo.CheckedChanged += new System.EventHandler(this.CheckBoxACombo_CheckedChanged);
             // 
+            // CheckboxReceiveEggs
+            // 
+            this.CheckboxReceiveEggs.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxReceiveEggs.Location = new System.Drawing.Point(914, 464);
+            this.CheckboxReceiveEggs.Name = "CheckboxReceiveEggs";
+            this.CheckboxReceiveEggs.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxReceiveEggs.TabIndex = 93;
+            this.CheckboxReceiveEggs.Text = "自动取蛋-5号路";
+            this.CheckboxReceiveEggs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxReceiveEggs.UseVisualStyleBackColor = true;
+            this.CheckboxReceiveEggs.CheckedChanged += new System.EventHandler(this.CheckboxReceiveEggs_CheckedChanged);
+            // 
+            // CheckboxIncubation
+            // 
+            this.CheckboxIncubation.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxIncubation.Location = new System.Drawing.Point(914, 568);
+            this.CheckboxIncubation.Name = "CheckboxIncubation";
+            this.CheckboxIncubation.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxIncubation.TabIndex = 94;
+            this.CheckboxIncubation.Text = "自动孵1箱蛋";
+            this.CheckboxIncubation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxIncubation.UseVisualStyleBackColor = true;
+            this.CheckboxIncubation.CheckedChanged += new System.EventHandler(this.CheckboxIncubation_CheckedChanged);
+            // 
+            // EggTextbox
+            // 
+            this.EggTextbox.Location = new System.Drawing.Point(914, 541);
+            this.EggTextbox.Name = "EggTextbox";
+            this.EggTextbox.Size = new System.Drawing.Size(104, 21);
+            this.EggTextbox.TabIndex = 95;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(912, 526);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(113, 12);
+            this.label26.TabIndex = 96;
+            this.label26.Text = "正常孵蛋周期(如20)";
+            // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 624);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.EggTextbox);
+            this.Controls.Add(this.CheckboxIncubation);
+            this.Controls.Add(this.CheckboxReceiveEggs);
             this.Controls.Add(this.CheckBoxACombo);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
@@ -1293,6 +1341,10 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.CheckBox CheckBoxACombo;
+        private System.Windows.Forms.CheckBox CheckboxReceiveEggs;
+        private System.Windows.Forms.CheckBox CheckboxIncubation;
+        private System.Windows.Forms.TextBox EggTextbox;
+        private System.Windows.Forms.Label label26;
     }
 }
 
