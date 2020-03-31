@@ -848,7 +848,9 @@ namespace PokemonAutomation
                             updateCountLabelWithRaidHole((int)i + 1, n_days);
                         }
                     }, cancel_token);
-
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -981,6 +983,9 @@ namespace PokemonAutomation
                         }
                     }, cancel_token);
 
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -1128,6 +1133,9 @@ namespace PokemonAutomation
                         }
                     }, cancel_token);
 
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -2121,7 +2129,7 @@ namespace PokemonAutomation
             await Task.Delay(500);
         }
 
-        private async Task IncubationCycle(/*int milliSeconds*/ bool clockwise)
+        private async Task IncubationCycle(bool clockwise)
         {
             // 1.5 seconds per cycle
             moveStick(ButtonType.LSTICK, clockwise ? Stick.MAX : Stick.MIN, Stick.CENTER);
@@ -2264,6 +2272,7 @@ namespace PokemonAutomation
 
         private async void CheckboxIncubation_CheckedChanged(object sender, EventArgs e)
         {
+            EggTextbox.Enabled = false;
             if (CheckboxIncubation.Checked)
             {
                 try
@@ -2330,6 +2339,9 @@ namespace PokemonAutomation
                             }
                         }                        
                     }, cancel_token);
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
                 }
                 catch (System.Threading.Tasks.TaskCanceledException exception)
                 {
@@ -2343,6 +2355,7 @@ namespace PokemonAutomation
             {
                 token_source.Cancel();
             }
+            EggTextbox.Enabled = true;
         }
     }
 }

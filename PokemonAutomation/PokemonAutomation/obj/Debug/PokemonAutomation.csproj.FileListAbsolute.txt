@@ -40,3 +40,4 @@ D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Debug\Po
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Debug\PokemonAutomation.csproj.GenerateResource.Cache
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Debug\PokemonAutomation.exe
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Debug\PokemonAutomation.pdb
+D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Debug\PokemonAutomation.TaskFinished.resources
