@@ -118,6 +118,9 @@
             this.CheckboxIncubation = new System.Windows.Forms.CheckBox();
             this.EggTextbox = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
+            this.BoxAmountTextbox = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.IncubationLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // up
@@ -1104,7 +1107,7 @@
             // CheckBoxACombo
             // 
             this.CheckBoxACombo.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckBoxACombo.Location = new System.Drawing.Point(914, 417);
+            this.CheckBoxACombo.Location = new System.Drawing.Point(488, 625);
             this.CheckBoxACombo.Name = "CheckBoxACombo";
             this.CheckBoxACombo.Size = new System.Drawing.Size(104, 32);
             this.CheckBoxACombo.TabIndex = 92;
@@ -1116,7 +1119,7 @@
             // CheckboxReceiveEggs
             // 
             this.CheckboxReceiveEggs.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxReceiveEggs.Location = new System.Drawing.Point(914, 464);
+            this.CheckboxReceiveEggs.Location = new System.Drawing.Point(914, 423);
             this.CheckboxReceiveEggs.Name = "CheckboxReceiveEggs";
             this.CheckboxReceiveEggs.Size = new System.Drawing.Size(104, 32);
             this.CheckboxReceiveEggs.TabIndex = 93;
@@ -1128,18 +1131,18 @@
             // CheckboxIncubation
             // 
             this.CheckboxIncubation.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxIncubation.Location = new System.Drawing.Point(914, 568);
+            this.CheckboxIncubation.Location = new System.Drawing.Point(914, 584);
             this.CheckboxIncubation.Name = "CheckboxIncubation";
             this.CheckboxIncubation.Size = new System.Drawing.Size(104, 32);
             this.CheckboxIncubation.TabIndex = 94;
-            this.CheckboxIncubation.Text = "自动孵1箱蛋";
+            this.CheckboxIncubation.Text = "自动孵N箱蛋";
             this.CheckboxIncubation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxIncubation.UseVisualStyleBackColor = true;
             this.CheckboxIncubation.CheckedChanged += new System.EventHandler(this.CheckboxIncubation_CheckedChanged);
             // 
             // EggTextbox
             // 
-            this.EggTextbox.Location = new System.Drawing.Point(914, 541);
+            this.EggTextbox.Location = new System.Drawing.Point(914, 512);
             this.EggTextbox.Name = "EggTextbox";
             this.EggTextbox.Size = new System.Drawing.Size(104, 21);
             this.EggTextbox.TabIndex = 95;
@@ -1147,17 +1150,45 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(912, 526);
+            this.label26.Location = new System.Drawing.Point(912, 497);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(113, 12);
             this.label26.TabIndex = 96;
             this.label26.Text = "正常孵蛋周期(如20)";
             // 
+            // BoxAmountTextbox
+            // 
+            this.BoxAmountTextbox.Location = new System.Drawing.Point(914, 557);
+            this.BoxAmountTextbox.Name = "BoxAmountTextbox";
+            this.BoxAmountTextbox.Size = new System.Drawing.Size(104, 21);
+            this.BoxAmountTextbox.TabIndex = 97;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(912, 542);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(35, 12);
+            this.label27.TabIndex = 98;
+            this.label27.Text = "箱数N";
+            // 
+            // IncubationLabel
+            // 
+            this.IncubationLabel.AutoSize = true;
+            this.IncubationLabel.Location = new System.Drawing.Point(912, 625);
+            this.IncubationLabel.Name = "IncubationLabel";
+            this.IncubationLabel.Size = new System.Drawing.Size(41, 12);
+            this.IncubationLabel.TabIndex = 99;
+            this.IncubationLabel.Text = "当前：";
+            // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 624);
+            this.ClientSize = new System.Drawing.Size(1079, 685);
+            this.Controls.Add(this.IncubationLabel);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.BoxAmountTextbox);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.EggTextbox);
             this.Controls.Add(this.CheckboxIncubation);
@@ -1345,6 +1376,9 @@
         private System.Windows.Forms.CheckBox CheckboxIncubation;
         private System.Windows.Forms.TextBox EggTextbox;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox BoxAmountTextbox;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label IncubationLabel;
     }
 }
 

@@ -2146,13 +2146,13 @@ namespace PokemonAutomation
             releaseStick(ButtonType.LSTICK);
         }
 
-        private async Task IncubationGetEggsFromBox(uint currentColumn)
+        private async Task IncubationGetEggsFromBox(int currentBox, uint currentColumn, bool next)
         {
             pressButton(ButtonType.X);
             await Task.Delay(40);
             releaseButton(ButtonType.X);
             await Task.Delay(1000);
-            if (currentColumn == 1)
+            if (currentBox == 1 && currentColumn == 1)
             {
                 await MenuLocatePokemon();
             }
@@ -2210,48 +2210,101 @@ namespace PokemonAutomation
             await Task.Delay(40);
             releaseButton(ButtonType.A);
             await Task.Delay(300);
-            pressButton(ButtonType.RIGHT);
-            await Task.Delay(40);
-            releaseButton(ButtonType.RIGHT);
-            await Task.Delay(300);
-            pressButton(ButtonType.A);
-            await Task.Delay(40);
-            releaseButton(ButtonType.A);
-            await Task.Delay(300);
-            for (uint j = 0; j < 4; j++)
+
+            if (currentColumn < 6)
             {
+                pressButton(ButtonType.RIGHT);
+                await Task.Delay(40);
+                releaseButton(ButtonType.RIGHT);
+                await Task.Delay(300);
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
+                for (uint j = 0; j < 4; j++)
+                {
+                    pressButton(ButtonType.DOWN);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.DOWN);
+                    await Task.Delay(50);
+                }
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
                 pressButton(ButtonType.DOWN);
                 await Task.Delay(40);
                 releaseButton(ButtonType.DOWN);
-                await Task.Delay(50);
+                await Task.Delay(300);
+                for (uint j = 0; j < currentColumn + 1; j++)
+                {
+                    pressButton(ButtonType.LEFT);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.LEFT);
+                    await Task.Delay(50);
+                }
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
+                for (uint j = 0; j < 3; j++)
+                {
+                    pressButton(ButtonType.B);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.B);
+                    await Task.Delay(2000);
+                }
             }
-            pressButton(ButtonType.A);
-            await Task.Delay(40);
-            releaseButton(ButtonType.A);
-            await Task.Delay(300);
-            pressButton(ButtonType.DOWN);
-            await Task.Delay(40);
-            releaseButton(ButtonType.DOWN);
-            await Task.Delay(300);
-            for (uint j = 0; j < currentColumn + 1; j++)
+
+            if (currentColumn == 6 && next)
             {
+                pressButton(ButtonType.R);
+                await Task.Delay(40);
+                releaseButton(ButtonType.R);
+                await Task.Delay(500);
+                for (uint j = 0; j < currentColumn - 1; j++)
+                {
+                    pressButton(ButtonType.LEFT);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.LEFT);
+                    await Task.Delay(50);
+                }
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
+                for (uint j = 0; j < 4; j++)
+                {
+                    pressButton(ButtonType.DOWN);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.DOWN);
+                    await Task.Delay(50);
+                }
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(40);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(300);
                 pressButton(ButtonType.LEFT);
                 await Task.Delay(40);
                 releaseButton(ButtonType.LEFT);
                 await Task.Delay(50);
-            }
-            pressButton(ButtonType.A);
-            await Task.Delay(40);
-            releaseButton(ButtonType.A);
-            await Task.Delay(300);
-
-            for (uint j = 0; j < 3; j++)
-            {
-                pressButton(ButtonType.B);
+                pressButton(ButtonType.A);
                 await Task.Delay(40);
-                releaseButton(ButtonType.B);
-                await Task.Delay(2000);
-            }
+                releaseButton(ButtonType.A);
+                await Task.Delay(300);
+                for (uint j = 0; j < 3; j++)
+                {
+                    pressButton(ButtonType.B);
+                    await Task.Delay(40);
+                    releaseButton(ButtonType.B);
+                    await Task.Delay(2000);
+                }
+            }            
+            
         }
 
         private async Task MenuLocatePokemon()
@@ -2270,9 +2323,22 @@ namespace PokemonAutomation
             await Task.Delay(300);
         }
 
+        private delegate void delegateUpdateIncuationLabel(int box, uint column);
+
+        private void updateIncuationLabel(int box, uint column)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new delegateUpdateIncuationLabel(this.updateIncuationLabel), box, column);
+                return;
+            }
+            IncubationLabel.Text = "当前：第" + box.ToString() + "箱第" + column.ToString() + "列";
+        }
+
         private async void CheckboxIncubation_CheckedChanged(object sender, EventArgs e)
         {
             EggTextbox.Enabled = false;
+            BoxAmountTextbox.Enabled = false;
             if (CheckboxIncubation.Checked)
             {
                 try
@@ -2281,63 +2347,66 @@ namespace PokemonAutomation
                     cancel_token = token_source.Token;
 
                     int period = int.Parse(EggTextbox.Text);
+                    int n_boxes = int.Parse(BoxAmountTextbox.Text);
                     await Task.Run(async () =>
                     {
-                        for (uint i = 0; i < 6; i++)
+                        for (int n = 0; n < n_boxes; n++)
                         {
-                            if (cancel_token.IsCancellationRequested)
+                            for (uint i = 0; i < 6; i++)
                             {
-                                return;
-                            }
-                            await IncubationBackToInit(i % 2 == 0);
-                            for (uint j = 0; j < period * 2 + 5; j++)
-                            {
-                                await IncubationCycle(i % 2 == 0);
-                            }
-                            for (uint j = 0; j < 5; j++)
-                            {
-                                pressButton(ButtonType.A);
-                                await Task.Delay(40);
-                                releaseButton(ButtonType.A);
-                                await Task.Delay(15000);
-                                pressButton(ButtonType.A);
-                                await Task.Delay(40);
-                                releaseButton(ButtonType.A);
-                                await Task.Delay(3000);
-                                if (j == 0)
+                                if (cancel_token.IsCancellationRequested)
                                 {
-                                    moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MIN);
-                                    await Task.Delay(100);
-                                    releaseStick(ButtonType.LSTICK);
-                                    await Task.Delay(500);
-                                }
-                                if (j == 1)
+                                    return;
+                                }                                
+                                updateIncuationLabel(n + 1, i + 1);
+                                await IncubationBackToInit(i % 2 == 0);
+                                for (uint j = 0; j < period * 2 + 5; j++)
                                 {
-                                    moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MAX);
-                                    await Task.Delay(100);
-                                    releaseStick(ButtonType.LSTICK);
-                                    await Task.Delay(500);
+                                    await IncubationCycle(i % 2 == 0);
                                 }
-                                if (j == 2)
+                                for (uint j = 0; j < 5; j++)
                                 {
-                                    moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MAX);
-                                    await Task.Delay(100);
-                                    releaseStick(ButtonType.LSTICK);
-                                    await Task.Delay(500);
+                                    pressButton(ButtonType.A);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.A);
+                                    await Task.Delay(15000);
+                                    pressButton(ButtonType.A);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.A);
+                                    await Task.Delay(3000);
+                                    if (j == 0)
+                                    {
+                                        moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MIN);
+                                        await Task.Delay(100);
+                                        releaseStick(ButtonType.LSTICK);
+                                        await Task.Delay(500);
+                                    }
+                                    if (j == 1)
+                                    {
+                                        moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MAX);
+                                        await Task.Delay(100);
+                                        releaseStick(ButtonType.LSTICK);
+                                        await Task.Delay(500);
+                                    }
+                                    if (j == 2)
+                                    {
+                                        moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MAX);
+                                        await Task.Delay(100);
+                                        releaseStick(ButtonType.LSTICK);
+                                        await Task.Delay(500);
+                                    }
+                                    if (j == 3)
+                                    {
+                                        moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MIN);
+                                        await Task.Delay(100);
+                                        releaseStick(ButtonType.LSTICK);
+                                        await Task.Delay(500);
+                                    }
                                 }
-                                if (j == 3)
-                                {
-                                    moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MIN);
-                                    await Task.Delay(100);
-                                    releaseStick(ButtonType.LSTICK);
-                                    await Task.Delay(500);
-                                }
-                            }
-                            if (i != 5)
-                            {
-                                await IncubationGetEggsFromBox(i + 1);
-                            }
-                        }                        
+                                await IncubationGetEggsFromBox(n + 1, i + 1, n < n_boxes - 1);
+                            }     
+                        }
+                                           
                     }, cancel_token);
                     TaskFinished taskFinished = new TaskFinished();
                     DialogResult rc = taskFinished.ShowDialog();
@@ -2356,6 +2425,7 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
             EggTextbox.Enabled = true;
+            BoxAmountTextbox.Enabled = true;
         }
     }
 }
