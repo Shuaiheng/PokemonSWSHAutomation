@@ -42,7 +42,8 @@ namespace PokemonAutomation
         {
             MIN = 0,
             CENTER = 128,
-            MAX = 255
+            MAX = 255,
+            CUSTOM_EGG = 50
         }
 
         private int[,] numberPanel = new int[10, 2] { { 3, 1 }, { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 1, 1 }, { 1, 2 }, { 2, 0 }, { 2, 1 }, { 2, 2 } };
@@ -2055,12 +2056,12 @@ namespace PokemonAutomation
                             }
                             for (uint i = 0; i < 2; i++)
                             {
-                                moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MIN);
-                                await Task.Delay(2800);
+                                moveStick(ButtonType.LSTICK, Stick.MIN, Stick.CUSTOM_EGG);
+                                await Task.Delay(2300);
                                 releaseStick(ButtonType.LSTICK);
                                 await Task.Delay(500);
-                                moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MIN);
-                                await Task.Delay(3200);
+                                moveStick(ButtonType.LSTICK, Stick.MAX, Stick.CUSTOM_EGG);
+                                await Task.Delay(2400);
                                 releaseStick(ButtonType.LSTICK);
                                 await Task.Delay(500);
                             }
