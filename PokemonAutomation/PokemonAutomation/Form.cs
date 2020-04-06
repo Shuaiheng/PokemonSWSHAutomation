@@ -43,7 +43,8 @@ namespace PokemonAutomation
             MIN = 0,
             CENTER = 128,
             MAX = 255,
-            CUSTOM_EGG = 50
+            CUSTOM_EGG = 50,
+            CUSTOM_INCUBATE = 64
         }
 
         private int[,] numberPanel = new int[10, 2] { { 3, 1 }, { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 1, 1 }, { 1, 2 }, { 2, 0 }, { 2, 1 }, { 2, 2 } };
@@ -94,7 +95,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateCountLabelWithRaidHole(this.updateCountLabelWithRaidHole), count, max);
                 return;
             }
-            CountLabelWithRaidHole.Text = "已过帧数：" + count.ToString();
+            CountLabelWithRaidHole.Text = "已过：" + count.ToString();
         }
 
         private delegate void delegateUpdateCountLabel(int count, int max);
@@ -106,7 +107,7 @@ namespace PokemonAutomation
                 this.Invoke(new delegateUpdateCountLabel(this.updateCountLabel), count, max);
                 return;
             }
-            CountLabel.Text = "已过帧数： " + count.ToString();
+            CountLabel.Text = "已过： " + count.ToString();
         }
 
 
@@ -1999,9 +2000,9 @@ namespace PokemonAutomation
             System.Diagnostics.Process.Start("iexplore.exe", "http://116.202.105.91/");
         }
 
-        private async void CheckBoxACombo_CheckedChanged(object sender, EventArgs e)
+        private async void CheckboxACombo_CheckedChanged(object sender, EventArgs e)
         {
-            if (CheckBoxACombo.Checked)
+            if (CheckboxACombo.Checked)
             {
                 try
                 {
@@ -2029,7 +2030,7 @@ namespace PokemonAutomation
                 catch (System.FormatException formatException)
                 {
                 }
-                CheckBoxACombo.Checked = false;                
+                CheckboxACombo.Checked = false;                
             }
             else
             {
@@ -2102,49 +2103,13 @@ namespace PokemonAutomation
             }
         }
 
-        private async Task IncubationBackToInit(bool clockwise)
+        private async Task IncubationCycle(int milliseconds)
         {
             moveStick(ButtonType.LSTICK, Stick.CENTER, Stick.MIN);
-            await Task.Delay(1000);
+            moveStick(ButtonType.RSTICK, Stick.MIN, Stick.CENTER);
+            await Task.Delay(milliseconds);
             releaseStick(ButtonType.LSTICK);
-            await Task.Delay(500);
-            // Adjust(up) 
-            moveStick(ButtonType.LSTICK, Stick.CENTER, Stick.MIN);
-            await Task.Delay(50);
-            releaseStick(ButtonType.LSTICK);
-            await Task.Delay(500);
-            // Adjust(right-true or left-false) 
-            moveStick(ButtonType.LSTICK, clockwise ? Stick.MAX : Stick.MIN, Stick.CENTER);
-            await Task.Delay(50);
-            releaseStick(ButtonType.LSTICK);
-            await Task.Delay(500);
-            // Adjust(down) 
-            moveStick(ButtonType.LSTICK, Stick.CENTER, Stick.MAX);
-            await Task.Delay(100);
-            releaseStick(ButtonType.LSTICK);
-            await Task.Delay(500);
-            // Adjust(right-true or left-false)  
-            moveStick(ButtonType.LSTICK, clockwise ? Stick.MAX : Stick.MIN, Stick.CENTER);
-            await Task.Delay(50);
-            releaseStick(ButtonType.LSTICK);
-            await Task.Delay(500);
-        }
-
-        private async Task IncubationCycle(bool clockwise)
-        {
-            // 1.5 seconds per cycle
-            moveStick(ButtonType.LSTICK, clockwise ? Stick.MAX : Stick.MIN, Stick.CENTER);
-            await Task.Delay(375);
-            releaseStick(ButtonType.LSTICK);
-            moveStick(ButtonType.LSTICK, Stick.CENTER, Stick.MAX);
-            await Task.Delay(375);
-            releaseStick(ButtonType.LSTICK);
-            moveStick(ButtonType.LSTICK, clockwise ? Stick.MIN : Stick.MAX, Stick.CENTER);
-            await Task.Delay(375);
-            releaseStick(ButtonType.LSTICK);
-            moveStick(ButtonType.LSTICK, Stick.CENTER, Stick.MIN);
-            await Task.Delay(375);
-            releaseStick(ButtonType.LSTICK);
+            releaseStick(ButtonType.RSTICK);
         }
 
         private async Task IncubationGetEggsFromBox(int currentBox, uint currentColumn, bool next)
@@ -2360,11 +2325,11 @@ namespace PokemonAutomation
                                     return;
                                 }                                
                                 updateIncuationLabel(n + 1, i + 1);
-                                await IncubationBackToInit(i % 2 == 0);
-                                for (uint j = 0; j < period * 2 + 5; j++)
-                                {
-                                    await IncubationCycle(i % 2 == 0);
-                                }
+                                pressButton(ButtonType.L);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.L);
+                                await Task.Delay(300);
+                                await IncubationCycle((period * 3 + 8) * 1000);
                                 for (uint j = 0; j < 5; j++)
                                 {
                                     pressButton(ButtonType.A);
@@ -2375,34 +2340,14 @@ namespace PokemonAutomation
                                     await Task.Delay(40);
                                     releaseButton(ButtonType.A);
                                     await Task.Delay(3000);
-                                    if (j == 0)
-                                    {
-                                        moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MIN);
-                                        await Task.Delay(100);
-                                        releaseStick(ButtonType.LSTICK);
-                                        await Task.Delay(500);
-                                    }
-                                    if (j == 1)
-                                    {
-                                        moveStick(ButtonType.LSTICK, Stick.MIN, Stick.MAX);
-                                        await Task.Delay(100);
-                                        releaseStick(ButtonType.LSTICK);
-                                        await Task.Delay(500);
-                                    }
-                                    if (j == 2)
-                                    {
-                                        moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MAX);
-                                        await Task.Delay(100);
-                                        releaseStick(ButtonType.LSTICK);
-                                        await Task.Delay(500);
-                                    }
-                                    if (j == 3)
-                                    {
-                                        moveStick(ButtonType.LSTICK, Stick.MAX, Stick.MIN);
-                                        await Task.Delay(100);
-                                        releaseStick(ButtonType.LSTICK);
-                                        await Task.Delay(500);
-                                    }
+                                    pressButton(ButtonType.L);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.L);
+                                    await Task.Delay(300);
+                                    moveStick(ButtonType.LSTICK, Stick.CUSTOM_INCUBATE, Stick.MIN);
+                                    await Task.Delay(100);
+                                    releaseStick(ButtonType.LSTICK);
+                                    await Task.Delay(500);
                                 }
                                 await IncubationGetEggsFromBox(n + 1, i + 1, n < n_boxes - 1);
                             }     
@@ -2427,6 +2372,31 @@ namespace PokemonAutomation
             }
             EggTextbox.Enabled = true;
             BoxAmountTextbox.Enabled = true;
+        }
+
+        private async void CheckboxReload_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckboxReload.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    await Reload();
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxReload.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
         }
     }
 }

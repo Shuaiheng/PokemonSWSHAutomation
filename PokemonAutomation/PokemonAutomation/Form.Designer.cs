@@ -113,7 +113,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.CheckBoxACombo = new System.Windows.Forms.CheckBox();
+            this.CheckboxACombo = new System.Windows.Forms.CheckBox();
             this.CheckboxReceiveEggs = new System.Windows.Forms.CheckBox();
             this.CheckboxIncubation = new System.Windows.Forms.CheckBox();
             this.EggTextbox = new System.Windows.Forms.TextBox();
@@ -121,6 +121,7 @@
             this.BoxAmountTextbox = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.IncubationLabel = new System.Windows.Forms.Label();
+            this.CheckboxReload = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // up
@@ -755,18 +756,18 @@
             this.CountLabelWithRaidHole.AutoSize = true;
             this.CountLabelWithRaidHole.Location = new System.Drawing.Point(566, 230);
             this.CountLabelWithRaidHole.Name = "CountLabelWithRaidHole";
-            this.CountLabelWithRaidHole.Size = new System.Drawing.Size(65, 12);
+            this.CountLabelWithRaidHole.Size = new System.Drawing.Size(41, 12);
             this.CountLabelWithRaidHole.TabIndex = 52;
-            this.CountLabelWithRaidHole.Text = "已过帧数：";
+            this.CountLabelWithRaidHole.Text = "已过：";
             // 
             // CountLabel
             // 
             this.CountLabel.AutoSize = true;
             this.CountLabel.Location = new System.Drawing.Point(833, 149);
             this.CountLabel.Name = "CountLabel";
-            this.CountLabel.Size = new System.Drawing.Size(65, 12);
+            this.CountLabel.Size = new System.Drawing.Size(41, 12);
             this.CountLabel.TabIndex = 52;
-            this.CountLabel.Text = "已过帧数：";
+            this.CountLabel.Text = "已过：";
             // 
             // label4
             // 
@@ -1078,9 +1079,9 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(667, 365);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(287, 12);
+            this.label23.Size = new System.Drawing.Size(215, 12);
             this.label23.TabIndex = 89;
-            this.label23.Text = "联网状态下使用，自动按Y设置交换密码，需手动退出";
+            this.label23.Text = "联网状态下使用，自动按Y设置交换密码";
             // 
             // label24
             // 
@@ -1104,22 +1105,22 @@
             this.label25.TabIndex = 91;
             this.label25.Text = "密码必填 0000视为无密码";
             // 
-            // CheckBoxACombo
+            // CheckboxACombo
             // 
-            this.CheckBoxACombo.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckBoxACombo.Location = new System.Drawing.Point(488, 625);
-            this.CheckBoxACombo.Name = "CheckBoxACombo";
-            this.CheckBoxACombo.Size = new System.Drawing.Size(104, 32);
-            this.CheckBoxACombo.TabIndex = 92;
-            this.CheckBoxACombo.Text = "连A";
-            this.CheckBoxACombo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CheckBoxACombo.UseVisualStyleBackColor = true;
-            this.CheckBoxACombo.CheckedChanged += new System.EventHandler(this.CheckBoxACombo_CheckedChanged);
+            this.CheckboxACombo.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxACombo.Location = new System.Drawing.Point(914, 287);
+            this.CheckboxACombo.Name = "CheckboxACombo";
+            this.CheckboxACombo.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxACombo.TabIndex = 92;
+            this.CheckboxACombo.Text = "连A";
+            this.CheckboxACombo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxACombo.UseVisualStyleBackColor = true;
+            this.CheckboxACombo.CheckedChanged += new System.EventHandler(this.CheckboxACombo_CheckedChanged);
             // 
             // CheckboxReceiveEggs
             // 
             this.CheckboxReceiveEggs.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxReceiveEggs.Location = new System.Drawing.Point(914, 423);
+            this.CheckboxReceiveEggs.Location = new System.Drawing.Point(914, 439);
             this.CheckboxReceiveEggs.Name = "CheckboxReceiveEggs";
             this.CheckboxReceiveEggs.Size = new System.Drawing.Size(104, 32);
             this.CheckboxReceiveEggs.TabIndex = 93;
@@ -1135,7 +1136,7 @@
             this.CheckboxIncubation.Name = "CheckboxIncubation";
             this.CheckboxIncubation.Size = new System.Drawing.Size(104, 32);
             this.CheckboxIncubation.TabIndex = 94;
-            this.CheckboxIncubation.Text = "自动孵N箱蛋";
+            this.CheckboxIncubation.Text = "自动孵N箱-旷野";
             this.CheckboxIncubation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxIncubation.UseVisualStyleBackColor = true;
             this.CheckboxIncubation.CheckedChanged += new System.EventHandler(this.CheckboxIncubation_CheckedChanged);
@@ -1181,11 +1182,24 @@
             this.IncubationLabel.TabIndex = 99;
             this.IncubationLabel.Text = "当前：";
             // 
+            // CheckboxReload
+            // 
+            this.CheckboxReload.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxReload.Location = new System.Drawing.Point(914, 326);
+            this.CheckboxReload.Name = "CheckboxReload";
+            this.CheckboxReload.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxReload.TabIndex = 100;
+            this.CheckboxReload.Text = "重启游戏";
+            this.CheckboxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxReload.UseVisualStyleBackColor = true;
+            this.CheckboxReload.CheckedChanged += new System.EventHandler(this.CheckboxReload_CheckedChanged);
+            // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 685);
+            this.ClientSize = new System.Drawing.Size(1079, 658);
+            this.Controls.Add(this.CheckboxReload);
             this.Controls.Add(this.IncubationLabel);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.BoxAmountTextbox);
@@ -1193,7 +1207,7 @@
             this.Controls.Add(this.EggTextbox);
             this.Controls.Add(this.CheckboxIncubation);
             this.Controls.Add(this.CheckboxReceiveEggs);
-            this.Controls.Add(this.CheckBoxACombo);
+            this.Controls.Add(this.CheckboxACombo);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
@@ -1277,8 +1291,9 @@
             this.Controls.Add(this.left);
             this.Controls.Add(this.down);
             this.Controls.Add(this.up);
+            this.MaximizeBox = false;
             this.Name = "PokemonAutomation";
-            this.Text = "PokemonAutomation(By chibi314, modified by DTFancCy1)";
+            this.Text = "PokemonAutomation(By DTFancCy1, adapted from chibi314)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1371,7 +1386,7 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.CheckBox CheckBoxACombo;
+        private System.Windows.Forms.CheckBox CheckboxACombo;
         private System.Windows.Forms.CheckBox CheckboxReceiveEggs;
         private System.Windows.Forms.CheckBox CheckboxIncubation;
         private System.Windows.Forms.TextBox EggTextbox;
@@ -1379,6 +1394,7 @@
         private System.Windows.Forms.TextBox BoxAmountTextbox;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label IncubationLabel;
+        private System.Windows.Forms.CheckBox CheckboxReload;
     }
 }
 
