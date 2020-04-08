@@ -44,7 +44,7 @@ namespace PokemonAutomation
             CENTER = 128,
             MAX = 255,
             CUSTOM_EGG = 50,
-            CUSTOM_INCUBATE = 64
+            CUSTOM_INCUBATE = 70
         }
 
         private int[,] numberPanel = new int[10, 2] { { 3, 1 }, { 0, 0 }, { 0, 1 }, { 0, 2 }, { 1, 0 }, { 1, 1 }, { 1, 2 }, { 2, 0 }, { 2, 1 }, { 2, 2 } };
@@ -2335,19 +2335,22 @@ namespace PokemonAutomation
                                     pressButton(ButtonType.A);
                                     await Task.Delay(40);
                                     releaseButton(ButtonType.A);
-                                    await Task.Delay(15000);
+                                    await Task.Delay(16000);
                                     pressButton(ButtonType.A);
                                     await Task.Delay(40);
                                     releaseButton(ButtonType.A);
                                     await Task.Delay(3000);
-                                    pressButton(ButtonType.L);
-                                    await Task.Delay(40);
-                                    releaseButton(ButtonType.L);
-                                    await Task.Delay(300);
-                                    moveStick(ButtonType.LSTICK, Stick.CUSTOM_INCUBATE, Stick.MIN);
-                                    await Task.Delay(100);
-                                    releaseStick(ButtonType.LSTICK);
-                                    await Task.Delay(500);
+                                    if (j != 4)
+                                    {
+                                        pressButton(ButtonType.L);
+                                        await Task.Delay(40);
+                                        releaseButton(ButtonType.L);
+                                        await Task.Delay(300);
+                                        moveStick(ButtonType.LSTICK, Stick.CUSTOM_INCUBATE, Stick.MIN);
+                                        await Task.Delay(100);
+                                        releaseStick(ButtonType.LSTICK);
+                                        await Task.Delay(500);
+                                    }
                                 }
                                 await IncubationGetEggsFromBox(n + 1, i + 1, n < n_boxes - 1);
                             }     

@@ -122,6 +122,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.IncubationLabel = new System.Windows.Forms.Label();
             this.CheckboxReload = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // up
@@ -925,11 +926,12 @@
             // CheckboxPlus3DaysStartMaxReload
             // 
             this.CheckboxPlus3DaysStartMaxReload.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxPlus3DaysStartMaxReload.Font = new System.Drawing.Font("宋体", 8F);
             this.CheckboxPlus3DaysStartMaxReload.Location = new System.Drawing.Point(261, 521);
             this.CheckboxPlus3DaysStartMaxReload.Name = "CheckboxPlus3DaysStartMaxReload";
             this.CheckboxPlus3DaysStartMaxReload.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlus3DaysStartMaxReload.TabIndex = 72;
-            this.CheckboxPlus3DaysStartMaxReload.Text = "随机车(需设置日期)";
+            this.CheckboxPlus3DaysStartMaxReload.Text = "随机(需设置日期)";
             this.CheckboxPlus3DaysStartMaxReload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlus3DaysStartMaxReload.UseVisualStyleBackColor = true;
             this.CheckboxPlus3DaysStartMaxReload.CheckedChanged += new System.EventHandler(this.CheckboxPlus3DaysStartMaxReload_CheckedChanged);
@@ -1194,11 +1196,21 @@
             this.CheckboxReload.UseVisualStyleBackColor = true;
             this.CheckboxReload.CheckedChanged += new System.EventHandler(this.CheckboxReload_CheckedChanged);
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(977, 9);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(89, 12);
+            this.label28.TabIndex = 101;
+            this.label28.Text = "Version: 2.0.4";
+            // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 658);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.CheckboxReload);
             this.Controls.Add(this.IncubationLabel);
             this.Controls.Add(this.label27);
@@ -1395,6 +1407,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label IncubationLabel;
         private System.Windows.Forms.CheckBox CheckboxReload;
+        private System.Windows.Forms.Label label28;
     }
 }
 
