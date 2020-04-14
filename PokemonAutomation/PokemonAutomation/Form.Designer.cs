@@ -1203,7 +1203,7 @@
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 101;
-            this.label28.Text = "Version: 2.0.4";
+            this.label28.Text = "Version: 2.0.6";
             // 
             // PokemonAutomation
             // 

@@ -552,7 +552,7 @@ namespace PokemonAutomation
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
-            await Task.Delay(300);
+            await Task.Delay(150);
 
             if (rade_hole_mode)
             {
@@ -617,7 +617,7 @@ namespace PokemonAutomation
                     releaseButton(ButtonType.A);
                     await Task.Delay(40);
                 }
-                await Task.Delay(200);
+                await Task.Delay(80);
             }
             updateDateLabel();
         }

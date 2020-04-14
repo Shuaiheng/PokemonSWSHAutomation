@@ -34,4 +34,3 @@ D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.pdb
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\bin\Release\PokemonAutomation.pdb
 D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.TaskFinished.resources
-D:\github\PokemonSWSHAutomation\PokemonAutomation\PokemonAutomation\obj\Release\PokemonAutomation.csprojResolveAssemblyReference.cache
