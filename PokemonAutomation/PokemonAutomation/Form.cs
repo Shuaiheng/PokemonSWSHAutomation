@@ -2401,5 +2401,195 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
         }
+
+        private async void CheckboxHomeRelease_CheckedChanged(object sender, EventArgs e)
+        {
+            HomeReleaseTextbox.Enabled = false;
+            if (CheckboxHomeRelease.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int amount = int.Parse(HomeReleaseTextbox.Text);
+                    await Task.Run(async () =>
+                    {
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(300);
+                        for (uint j = 0; j < 2; j++)
+                        {
+                            pressButton(ButtonType.UP);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.UP);
+                            await Task.Delay(100);
+                        }
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.DOWN);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.DOWN);
+                        await Task.Delay(100);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(500);
+                        for (int n = 0; n < (amount <= 100 ? amount-1 : 99) ; n++)
+                        {
+                            if (cancel_token.IsCancellationRequested)
+                            {
+                                return;
+                            }
+                            pressButton(ButtonType.RIGHT);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.RIGHT);
+                            await Task.Delay(40);
+                            pressButton(ButtonType.A);
+                            await Task.Delay(40);
+                            releaseButton(ButtonType.A);
+                            await Task.Delay(150);
+                        }
+                        pressButton(ButtonType.PLUS);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.PLUS);
+                        await Task.Delay(1000);
+                        pressButton(ButtonType.UP);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.UP);
+                        await Task.Delay(100);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(500);
+                        pressButton(ButtonType.A);
+                        await Task.Delay(40);
+                        releaseButton(ButtonType.A);
+                        await Task.Delay(40);
+                    }, cancel_token);
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxHomeRelease.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            HomeReleaseTextbox.Enabled = true;
+        }
+
+        private async void CheckboxGameRelease_CheckedChanged(object sender, EventArgs e)
+        {
+            GameReleaseTextbox.Enabled = false;
+            if (CheckboxGameRelease.Checked)
+            {
+                try
+                {
+                    token_source = new CancellationTokenSource();
+                    cancel_token = token_source.Token;
+
+                    int columns = int.Parse(GameReleaseTextbox.Text);
+                    await Task.Run(async () =>
+                    {
+                        for (int n = 0; n < columns; n++)
+                        {
+                            for (uint i = 0; i < 5; i++)
+                            {
+                                if (cancel_token.IsCancellationRequested)
+                                {
+                                    return;
+                                }
+                                pressButton(ButtonType.A);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(300);
+                                for (uint j = 0; j < 2; j++)
+                                {
+                                    pressButton(ButtonType.UP);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.UP);
+                                    await Task.Delay(100);
+                                }
+                                pressButton(ButtonType.A);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(800);
+                                pressButton(ButtonType.UP);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.UP);
+                                await Task.Delay(100);
+                                pressButton(ButtonType.A);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(1000);
+                                pressButton(ButtonType.A);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.A);
+                                await Task.Delay(200);
+                                pressButton(ButtonType.DOWN);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.DOWN);
+                                await Task.Delay(40);
+                                if (i == 4)
+                                {
+                                    pressButton(ButtonType.DOWN);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.DOWN);
+                                    await Task.Delay(40);
+                                    pressButton(ButtonType.DOWN);
+                                    await Task.Delay(40);
+                                    releaseButton(ButtonType.DOWN);
+                                    await Task.Delay(40);
+                                    if (n != columns - 1)
+                                    {
+                                        pressButton(ButtonType.RIGHT);
+                                        await Task.Delay(40);
+                                        releaseButton(ButtonType.RIGHT);
+                                        await Task.Delay(40);
+                                    }
+                                }
+                            }
+                            if (n != columns - 1 && n % 6 == 5)
+                            {
+                                pressButton(ButtonType.RIGHT);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.RIGHT);
+                                await Task.Delay(40);
+                                pressButton(ButtonType.R);
+                                await Task.Delay(40);
+                                releaseButton(ButtonType.R);
+                                await Task.Delay(200);
+                            }
+                        }
+                    }, cancel_token);
+                    TaskFinished taskFinished = new TaskFinished();
+                    DialogResult rc = taskFinished.ShowDialog();
+                    taskFinished.Dispose();
+                }
+                catch (System.Threading.Tasks.TaskCanceledException exception)
+                {
+                }
+                catch (System.FormatException formatException)
+                {
+                }
+                CheckboxGameRelease.Checked = false;
+            }
+            else
+            {
+                token_source.Cancel();
+            }
+            GameReleaseTextbox.Enabled = true;
+        }
     }
 }

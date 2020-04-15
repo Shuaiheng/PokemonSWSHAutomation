@@ -123,6 +123,12 @@
             this.IncubationLabel = new System.Windows.Forms.Label();
             this.CheckboxReload = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
+            this.HomeReleaseTextbox = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.CheckboxHomeRelease = new System.Windows.Forms.CheckBox();
+            this.CheckboxGameRelease = new System.Windows.Forms.CheckBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.GameReleaseTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // up
@@ -1199,17 +1205,79 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(977, 9);
+            this.label28.Location = new System.Drawing.Point(1117, 9);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 101;
-            this.label28.Text = "Version: 2.0.6";
+            this.label28.Text = "Version: 2.1.0";
+            // 
+            // HomeReleaseTextbox
+            // 
+            this.HomeReleaseTextbox.Location = new System.Drawing.Point(1078, 456);
+            this.HomeReleaseTextbox.Name = "HomeReleaseTextbox";
+            this.HomeReleaseTextbox.Size = new System.Drawing.Size(104, 21);
+            this.HomeReleaseTextbox.TabIndex = 102;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(1076, 441);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(131, 12);
+            this.label29.TabIndex = 103;
+            this.label29.Text = "放生数量(单次最多100)";
+            // 
+            // CheckboxHomeRelease
+            // 
+            this.CheckboxHomeRelease.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxHomeRelease.Location = new System.Drawing.Point(1078, 486);
+            this.CheckboxHomeRelease.Name = "CheckboxHomeRelease";
+            this.CheckboxHomeRelease.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxHomeRelease.TabIndex = 104;
+            this.CheckboxHomeRelease.Text = "PHome一并放生";
+            this.CheckboxHomeRelease.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxHomeRelease.UseVisualStyleBackColor = true;
+            this.CheckboxHomeRelease.CheckedChanged += new System.EventHandler(this.CheckboxHomeRelease_CheckedChanged);
+            // 
+            // CheckboxGameRelease
+            // 
+            this.CheckboxGameRelease.Appearance = System.Windows.Forms.Appearance.Button;
+            this.CheckboxGameRelease.Location = new System.Drawing.Point(1078, 584);
+            this.CheckboxGameRelease.Name = "CheckboxGameRelease";
+            this.CheckboxGameRelease.Size = new System.Drawing.Size(104, 32);
+            this.CheckboxGameRelease.TabIndex = 107;
+            this.CheckboxGameRelease.Text = "游戏内逐个放生";
+            this.CheckboxGameRelease.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CheckboxGameRelease.UseVisualStyleBackColor = true;
+            this.CheckboxGameRelease.CheckedChanged += new System.EventHandler(this.CheckboxGameRelease_CheckedChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(1076, 539);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 12);
+            this.label30.TabIndex = 106;
+            this.label30.Text = "放生列数";
+            // 
+            // GameReleaseTextbox
+            // 
+            this.GameReleaseTextbox.Location = new System.Drawing.Point(1078, 554);
+            this.GameReleaseTextbox.Name = "GameReleaseTextbox";
+            this.GameReleaseTextbox.Size = new System.Drawing.Size(104, 21);
+            this.GameReleaseTextbox.TabIndex = 105;
             // 
             // PokemonAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 658);
+            this.ClientSize = new System.Drawing.Size(1218, 658);
+            this.Controls.Add(this.CheckboxGameRelease);
+            this.Controls.Add(this.label30);
+            this.Controls.Add(this.GameReleaseTextbox);
+            this.Controls.Add(this.CheckboxHomeRelease);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.HomeReleaseTextbox);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.CheckboxReload);
             this.Controls.Add(this.IncubationLabel);
@@ -1408,6 +1476,12 @@
         private System.Windows.Forms.Label IncubationLabel;
         private System.Windows.Forms.CheckBox CheckboxReload;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox HomeReleaseTextbox;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.CheckBox CheckboxHomeRelease;
+        private System.Windows.Forms.CheckBox CheckboxGameRelease;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox GameReleaseTextbox;
     }
 }
 
