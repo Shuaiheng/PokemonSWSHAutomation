@@ -51,7 +51,8 @@ namespace PokemonAutomation
 
         private CancellationTokenSource token_source;
         private CancellationToken cancel_token;
-        private uint day_count;
+        // private uint day_count;
+        private DateTime init_date;
         private DateTime current_date;
 
 
@@ -113,10 +114,11 @@ namespace PokemonAutomation
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            current_date = DateTime.Now;
+            YearComboBox.SelectedIndex = YearComboBox.Items.IndexOf(current_date.Year.ToString());
+            MonthComboBox.SelectedIndex = MonthComboBox.Items.IndexOf(current_date.Month.ToString());
+            DayComboBox.SelectedIndex = DayComboBox.Items.IndexOf(current_date.Day.ToString());
             getSerialPorts();
-            YearComboBox.SelectedIndex = 0;
-            MonthComboBox.SelectedIndex = 0;
-            DayComboBox.SelectedIndex = 0;
 
             updateDateLabel();
         }
@@ -980,6 +982,11 @@ namespace PokemonAutomation
                                 return;
                             }
 
+                            if (current_date.Year == 2060 && current_date.Month == 12 && current_date.Day == 31)
+                            {
+                                await dateBackToInit();
+                            }
+
                             await increaseDate();
                             updateCountLabel(i + 1, n_days);
                         }
@@ -1089,6 +1096,84 @@ namespace PokemonAutomation
             await Task.Delay(300);
         }
 
+        private async Task dateBackToInit()
+        {
+            int year_diff = current_date.Year - init_date.Year;
+            int month_diff = current_date.Month - init_date.Month;
+            int day_diff = init_date.Day - 1;
+            current_date = init_date;
+
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(150);
+
+            for (int i = 0; i < 3; ++i)
+            {
+                pressButton(ButtonType.LEFT);
+                await Task.Delay(40);
+                releaseButton(ButtonType.LEFT);
+                await Task.Delay(40);
+            }
+
+            pressButton(ButtonType.UP);
+            await Task.Delay(40);
+            releaseButton(ButtonType.UP);
+            await Task.Delay(40);
+
+            for (int i = 0; i < 2; ++i)
+            {
+                pressButton(ButtonType.LEFT);
+                await Task.Delay(40);
+                releaseButton(ButtonType.LEFT);
+                await Task.Delay(40);
+            }
+
+            for (int i = 0; i < year_diff; ++i)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(40);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(40);
+            }
+
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(40);
+
+            for (int i = 0; i < month_diff; ++i)
+            {
+                pressButton(ButtonType.DOWN);
+                await Task.Delay(40);
+                releaseButton(ButtonType.DOWN);
+                await Task.Delay(40);
+            }
+
+            pressButton(ButtonType.A);
+            await Task.Delay(40);
+            releaseButton(ButtonType.A);
+            await Task.Delay(40);
+
+            for (int i = 0; i < day_diff; ++i)
+            {
+                pressButton(ButtonType.UP);
+                await Task.Delay(40);
+                releaseButton(ButtonType.UP);
+                await Task.Delay(40);
+            }
+
+            for (int i = 0; i < 4; ++i)
+            {
+                pressButton(ButtonType.A);
+                await Task.Delay(40);
+                releaseButton(ButtonType.A);
+                await Task.Delay(40);
+            }
+            await Task.Delay(80);
+            updateDateLabel();
+        }
+
         private async void CheckboxPlusNDaysWithSave_CheckedChanged(object sender, EventArgs e)
         {
             DayComboBox.Enabled = false;
@@ -1124,12 +1209,15 @@ namespace PokemonAutomation
                             {
                                 return;
                             }
-                            if (i !=0 && i % 300 == 0)
+                            if (i !=0 && i % 500 == 0)
                             {
                                 await SaveThenBackToPlusNDays();
                                 await Task.Delay(1000);
                             }
-
+                            if (current_date.Year == 2060 && current_date.Month == 12 && current_date.Day == 31)
+                            {
+                                await dateBackToInit();
+                            }
                             await increaseDate();
                             updateCountLabel(i + 1, n_days);
                         }
@@ -1187,6 +1275,7 @@ namespace PokemonAutomation
                 int day = int.Parse(DayComboBox.SelectedItem.ToString());
 
                 current_date = new DateTime(year, month, day, 0, 0, 0);
+                init_date = new DateTime(year, month, day, 0, 0, 0);
                 updateDateLabel();
             }
         }

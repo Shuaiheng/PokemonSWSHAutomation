@@ -529,7 +529,7 @@
             // LabelDate
             // 
             this.LabelDate.AutoSize = true;
-            this.LabelDate.Location = new System.Drawing.Point(556, 47);
+            this.LabelDate.Location = new System.Drawing.Point(656, 47);
             this.LabelDate.Name = "LabelDate";
             this.LabelDate.Size = new System.Drawing.Size(65, 12);
             this.LabelDate.TabIndex = 42;
@@ -661,7 +661,7 @@
             "2058",
             "2059",
             "2060"});
-            this.YearComboBox.Location = new System.Drawing.Point(558, 14);
+            this.YearComboBox.Location = new System.Drawing.Point(658, 14);
             this.YearComboBox.Name = "YearComboBox";
             this.YearComboBox.Size = new System.Drawing.Size(91, 20);
             this.YearComboBox.TabIndex = 46;
@@ -670,7 +670,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(655, 17);
+            this.label1.Location = new System.Drawing.Point(755, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(17, 12);
             this.label1.TabIndex = 47;
@@ -679,7 +679,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(750, 17);
+            this.label2.Location = new System.Drawing.Point(850, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 12);
             this.label2.TabIndex = 48;
@@ -688,7 +688,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(845, 17);
+            this.label3.Location = new System.Drawing.Point(945, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 49;
@@ -710,7 +710,7 @@
             "10",
             "11",
             "12"});
-            this.MonthComboBox.Location = new System.Drawing.Point(678, 14);
+            this.MonthComboBox.Location = new System.Drawing.Point(778, 14);
             this.MonthComboBox.Name = "MonthComboBox";
             this.MonthComboBox.Size = new System.Drawing.Size(66, 20);
             this.MonthComboBox.TabIndex = 50;
@@ -751,7 +751,7 @@
             "29",
             "30",
             "31"});
-            this.DayComboBox.Location = new System.Drawing.Point(773, 14);
+            this.DayComboBox.Location = new System.Drawing.Point(873, 14);
             this.DayComboBox.Name = "DayComboBox";
             this.DayComboBox.Size = new System.Drawing.Size(66, 20);
             this.DayComboBox.TabIndex = 51;
@@ -813,7 +813,7 @@
             this.CheckboxPlusNDaysWithSave.Name = "CheckboxPlusNDaysWithSave";
             this.CheckboxPlusNDaysWithSave.Size = new System.Drawing.Size(104, 32);
             this.CheckboxPlusNDaysWithSave.TabIndex = 58;
-            this.CheckboxPlusNDaysWithSave.Text = "对战过帧+N(每300帧存档)";
+            this.CheckboxPlusNDaysWithSave.Text = "对战过帧+N(每500帧存档)";
             this.CheckboxPlusNDaysWithSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CheckboxPlusNDaysWithSave.UseVisualStyleBackColor = true;
             this.CheckboxPlusNDaysWithSave.CheckedChanged += new System.EventHandler(this.CheckboxPlusNDaysWithSave_CheckedChanged);
@@ -1096,7 +1096,7 @@
             this.label24.AutoSize = true;
             this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label24.Font = new System.Drawing.Font("宋体", 13F);
-            this.label24.Location = new System.Drawing.Point(723, 61);
+            this.label24.Location = new System.Drawing.Point(823, 61);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(154, 20);
             this.label24.TabIndex = 90;
@@ -1116,7 +1116,7 @@
             // CheckboxACombo
             // 
             this.CheckboxACombo.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxACombo.Location = new System.Drawing.Point(914, 287);
+            this.CheckboxACombo.Location = new System.Drawing.Point(1000, 306);
             this.CheckboxACombo.Name = "CheckboxACombo";
             this.CheckboxACombo.Size = new System.Drawing.Size(104, 32);
             this.CheckboxACombo.TabIndex = 92;
@@ -1193,7 +1193,7 @@
             // CheckboxReload
             // 
             this.CheckboxReload.Appearance = System.Windows.Forms.Appearance.Button;
-            this.CheckboxReload.Location = new System.Drawing.Point(914, 326);
+            this.CheckboxReload.Location = new System.Drawing.Point(1000, 345);
             this.CheckboxReload.Name = "CheckboxReload";
             this.CheckboxReload.Size = new System.Drawing.Size(104, 32);
             this.CheckboxReload.TabIndex = 100;
@@ -1209,7 +1209,7 @@
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 101;
-            this.label28.Text = "Version: 2.1.0";
+            this.label28.Text = "Version: 2.1.2";
             // 
             // HomeReleaseTextbox
             // 
