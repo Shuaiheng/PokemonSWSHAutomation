@@ -889,12 +889,12 @@ namespace PokemonAutomation
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             // confirm account
             pressButton(ButtonType.A);
             await Task.Delay(40);
             releaseButton(ButtonType.A);
-            await Task.Delay(17000);
+            await Task.Delay(19000);
             // skip the opening animation
             pressButton(ButtonType.A);
             await Task.Delay(40);
@@ -2679,6 +2679,11 @@ namespace PokemonAutomation
                 token_source.Cancel();
             }
             GameReleaseTextbox.Enabled = true;
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

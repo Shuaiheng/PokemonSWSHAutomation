@@ -1209,7 +1209,8 @@
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 101;
-            this.label28.Text = "Version: 2.1.2";
+            this.label28.Text = "Version: 2.1.3";
+            this.label28.Click += new System.EventHandler(this.label28_Click);
             // 
             // HomeReleaseTextbox
             // 
